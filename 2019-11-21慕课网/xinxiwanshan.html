@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/personal_setting.css"/>
+		<link rel="stylesheet" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/head.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body style="background-color: #F1F6F9;padding-bottom: 180px;">
+	<style type="text/css">
+    		.login,.zhuce,.yi_zhuce{
+    			width: 320px;
+				height: 402px;
+				padding: 24px 40px;
+				background: #FFFFFF;
+				box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+				border-radius: 8px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-left: -200px;
+				margin-top: -225px;
+				cursor: pointer;
+    		}
+    		.login p{
+    			font-size: 12px;
+				line-height: 20px;
+				color: #DE2121;
+				margin: 4px 0 8px 0;
+				display: block;
+				height: 20px;
+    		}
+    		.register_tishi,.register_tishi_shouji{
+    			font-size: 12px;
+				line-height: 20px;
+				color: #DE2121;
+				margin: 4px 0 8px 0;
+				display: block;
+				height: 20px;
+    		}
+    		.ipone,.zhanghao{
+    			float: left;
+    			font-size: 16px;
+				line-height: 24px;
+				color: rgba(0, 0, 0, 0.8);
+				position:relative;
+				padding-bottom:8px;
+				margin-right: 32px;
+    		}
+    		.ipone span,.zhanghao span{
+    			position: absolute;
+    			width: 40px;
+    			height: 2px;
+    			background: #DE2121;
+    			bottom: 2px;
+    			left: 50%;
+    			margin-left: -20px;
+    		}
+    		.login_zhuce,.zhuce_denglu{
+    			float: right;
+    			font-size: 16px;
+				line-height: 24px;
+				color: #18A0FB;
+    		}
+    		#shoujihao,#mima,#zaimima,#login_zhanghao_zhanghao,#login_zhanghao_mima,#register_shouji,#register_shoujihao{
+				width: 320px;
+				height: 48px;
+				background: #F1F6F9;
+				border-radius: 4px;
+				margin: 0 auto;
+				display: block;
+				font-size: 16px;
+				line-height: 24px;
+				color: rgba(0, 0, 0, 0.4);
+				border: none;
+				text-indent:16px;
+				outline:none;
+				margin-top: 40px;
+    		}
+    		p{
+				text-indent:16px;
+    			
+    		}
+    		#yanzheng input,#yanzheng div,#register_yanzheng input,#register_yanzheng div{
+				width: 150px;
+				height: 48px;
+				background: #F1F6F9;
+				border-radius: 4px;
+				float: left;
+				font-size: 16px;
+				line-height: 48px;
+    		}
+    		#yanzheng div,#register_yanzheng div{
+				float: right;
+				background: #18A0FB;
+				color: #FFFFFF;
+				cursor: pointer;
+				text-align: center;
+    		}
+    		#yanzheng input,#register_yanzheng input{
+				background:#F1F6F9;
+				color: rgba(0, 0, 0, 0.4);
+				text-indent:16px;
+				
+    		}
+    		.denglu{
+				font-size: 16px;
+				line-height: 48px;
+				color: #FFFFFF;
+				width: 320px;
+				height: 48px;
+				background: rgba(222, 33, 33, 0.2);
+				border-radius: 4px;
+				margin-top:16px;
+				text-align: center;
+    		}
+    		.wx{
+				width: 152px;
+				height: 32px;
+				margin: 0 auto;
+				cursor: pointer;
+				margin-top: 64px;
+    		}
+    		.wx img{
+    			width: 32px;
+    			height: 32px;
+    			border-radius: 50%;
+    			float: left;
+    			margin-right: 8px;
+    		}
+    		.wx span{
+    			line-height: 32px;
+    			font-size: 16px;
+				color: #7BB32E;
+    		}
+    		.zhuce_p{
+    			font-size: 12px;
+				line-height: 20px;
+				color: rgba(0, 0, 0, 0.6);
+				text-indent:16px;
+				margin: 4px 0 8px 0;
+    		}
+    		.wanshanxinxi{
+    			/*position: fixed;*/
+				width: 546px;
+				height: 601px;
+				/*left: 50%;*/
+				/*top: 50%;*/
+				margin: 0 auto;
+				margin-top: 40px;
+				/*margin-left: -313px;*/
+				background: #FFFFFF;
+				box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+				border-radius: 8px;
+				padding: 0 40px;
+				padding-bottom: 52px;
+    		}
+    		.personal_details_top{
+    			font-size: 16px;
+				line-height: 24px;
+				color: rgba(0, 0, 0, 0.8);
+				padding-top: 24px;
+				font-weight: 600;
+    		}
+    		
+    		.nickname,.real_name,.identity_card,.province,.the_city_proper,.politics_status{
+				margin-top: 32px;
+			}
+			.nickname input,.real_name input,.identity_card input{
+				width: 320px;
+				float: left;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+				border: none;
+				height: 48px;
+				margin-right: 16px;
+				text-indent:16px;
+				outline:none;
+			}
+			.xianding{
+				float: left;
+				font-size: 16px;
+				line-height: 48px;
+				color: rgba(0, 0, 0, 0.2);
+			}
+			.province input,.the_city_proper input,.politics_status input{
+				width: 280px;
+				float: left;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+				border: none;
+				height: 48px;
+				margin-right: 16px;
+				text-indent:16px;
+				outline:none;
+			}
+			#province_code_id,#city_code_id,#district_code_id,#street_code_id,#politics_status{
+				width: 160px;
+				float: left;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+				border: none;
+				height: 48px;
+				text-indent:16px;
+				outline:none;
+			}
+			#identity_card{
+				width: 320px;
+				float: left;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+				border: none;
+				height: 48px;
+				margin-right: 16px;
+				text-indent:16px;
+				outline:none;
+			}
+			option{
+				width: 280px;
+				background: rgba(0, 0, 0, 0.05);
+				text-indent:16px;
+				height: 48px;
+			}
+			.province .texts{
+				text-align: right;
+				margin-right:8px;
+				width: 88px;
+				margin-left: 0;
+			}
+			.the_city_proper .text1{
+				width: 88px;
+				margin-right: 8px;
+				margin-left: 0;
+			}
+			.baocun{
+				cursor: pointer;
+				height: 48px;
+				text-align:center;
+				line-height: 48px;
+				color: #fff;
+				width: 320px;
+				background: rgba(222, 33, 33, 0.2);
+				border-radius: 4px;
+				margin: 0 auto;
+				margin-top: 40px;
+			}
+			
+			/*已注册弹框*/
+			.yi_zhuce{
+				padding-top: 122px;
+				height: 304px;
+			}
+			.yi_zhuce p{
+				font-size: 14px;
+				line-height: 22px;
+				text-align: center;
+				color: rgba(0, 0, 0, 0.8);
+			}
+			.yi_zhuce p:nth-child(3){
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 26px;
+				color: rgba(0, 0, 0, 0.8);
+				margin-top: 24px;
+			}
+			
+			.xinzhanghao{
+				width: 320px;
+				height: 48px;
+				background: #DE2121;
+				border-radius: 4px;
+				font-size: 16px;
+				line-height: 48px;
+				color: #FFFFFF;
+				margin-top: 50px;
+				text-align: center;
+				cursor: pointer;
+			}
+			.fangqizhuce{
+				font-size: 14px;
+				line-height: 22px;
+				color: #DE2121;
+				text-align: center;
+				margin-top: 22px;
+				cursor: pointer;
+			}
+			.xiala .test {
+    			width: 160px;
+			}
+			.xiala .xiala_1{
+    			width: 160px;
+			}
+    	</style>
+	    <!--导航栏-->
+	    <div id="head" class="clear">
+			<div class="inner clear">
+				<div class="head_le clear">
+					<img src=""/>
+					<span><a href="home.html" id="homess" style="color: #3C3C3C;">首页</a></span>
+					<span><a href="Boutique.html" id="Boutiquess" style="color: #3C3C3C;">精品课程</a></span>
+				</div>
+				<div class="head_ri clear clear">
+					<!--检测是否登录-->
+					<div class="detection_yes clear">
+						<img class="detection_yes_img" src=""/>
+						<!--<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0)">
+						<path d="M12 21C12.825 21 13.5 20.325 13.5 19.5H10.5C10.5 20.325 11.175 21 12 21Z" fill="black" fill-opacity="0.8"/>
+						<path d="M20.775 17.1L18 14.325V10.125C18 7.3125 16.0875 4.9875 13.5 4.3125C13.3875 3.5625 12.75 3 12 3C11.25 3 10.6125 3.5625 10.5 4.3125C7.91252 4.9875 6.00002 7.3125 6.00002 10.125V14.325L3.22502 17.1C3.00002 17.325 2.92502 17.625 3.07502 17.925C3.18752 18.1875 3.45002 18.375 3.75002 18.375H20.25C20.55 18.375 20.8125 18.1875 20.925 17.925C21.075 17.625 21 17.325 20.775 17.1ZM5.55002 16.875L7.27502 15.15C7.42502 15 7.50002 14.8125 7.50002 14.625V10.125C7.50002 7.65 9.52502 5.625 12 5.625C14.475 5.625 16.5 7.65 16.5 10.125V14.625C16.5 14.8125 16.575 15 16.725 15.15L18.45 16.875H5.55002Z" fill="black" fill-opacity="0.8"/>
+						</g>
+						<defs>
+						<clipPath id="clip0">
+						<rect width="18" height="18" fill="white" transform="translate(3 3)"/>
+						</clipPath>
+						</defs>
+						</svg>-->
+						<div class="detection_yes_tankaung" style="display: none;z-index: 100;">
+							<div class="detection_yes_tankaung_top clear">
+								<img class="detection_yes_tankaung_top_le" src=""/>								
+								<div class="detection_yes_tankaung_top_ri">
+									<p>Username</p>
+									<div>用户身份</div>
+								</div>
+							</div>
+							<div class="detection_yes_jifen">
+								积分：
+								<span>232</span>
+							</div>
+							<ul class="detection_yes_liebiao clear">
+								<li data-id='1'><img src=""/><span>我的收藏</span></li>
+								<li data-id='2'><img src=""/><span>学习历史</span></li>
+								<!--<li data-id='3'><img src=""/><span>我的订单</span></li>-->
+								<li data-id='4'><img src=""/><span>我的积分</span></li>
+							</ul>
+							<div class="detection_yes_quit">安全退出</div>
+							<div class="triangle"></div>
+						</div>
+					</div>
+					<!--搜索框-->
+					<!--<div class="search clear">
+						<input type="" name="" id="" value="" placeholder="推荐课程名称"/>
+						<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g clip-path="url(#clip0)">
+						<path d="M20.775 20.2522L17.5875 17.0647C18.7875 15.6397 19.5 13.8022 19.5 11.7772C19.5 7.20223 15.825 3.52723 11.25 3.52723C6.675 3.52723 3 7.20223 3 11.7772C3 16.3522 6.675 20.0272 11.25 20.0272C13.275 20.0272 15.1125 19.3147 16.5375 18.1147L19.725 21.3022C19.875 21.4522 20.0625 21.5272 20.25 21.5272C20.4375 21.5272 20.625 21.4522 20.775 21.3022C21.075 21.0022 21.075 20.5522 20.775 20.2522ZM11.25 18.5272C7.5375 18.5272 4.5 15.4897 4.5 11.7772C4.5 8.06473 7.5375 5.02723 11.25 5.02723C14.9625 5.02723 18 8.06473 18 11.7772C18 15.4897 14.9625 18.5272 11.25 18.5272Z" fill="black" fill-opacity="0.2"/>
+						</g>
+						<defs>
+						<clipPath id="clip0">
+						<rect width="18" height="18" fill="white" transform="translate(3 3.52723)"/>
+						</clipPath>
+						</defs>
+						</svg>
+
+					</div>-->
+				</div>
+			</div>
+		</div>
+    	<div id="login">
+    		<div class="wanshanxinxi">
+    			<div class="personal_details">
+    				<div class="personal_details_top">完善信息</div>
+					<div class="nickname clear">
+						<div class="text">昵称：</div>
+						<input type="" name="" id="nickname" value="" placeholder="昵称名称"/>
+						<div class="xianding"></div>
+					</div>
+					<div class="real_name clear">
+						<div class="text">真实姓名：</div>
+						<input type="" name="" id="real_name" value="" placeholder=""/>
+					</div>
+					<div class="identity_card clear">
+						<div class="text">身份证号：</div>
+						<input type="" name="" id="identity_card" value="" placeholder=""/>
+					</div>
+					<div class="province clear">
+						<div class="text">省/直辖市：</div>
+						<div class="xiala" id="province_code_id">
+				    		<div class="xiala_text" style="width: 160px;"></div>
+				    		<div class="xiala_text_val" style="display: none;"></div>
+				    		<div class="xiala_img">
+				    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+				    		</div>
+				    		<div class="xiala_1">
+				    			<div class="test test-1">
+							        <div class="scrollbar"></div>
+							        <ul class="xiala_ul"></ul>
+								</div>
+				    		</div>
+				    	</div>
+						<div class="text texts">市：</div>
+						<div class="xiala" id="city_code_id">
+				    		<div class="xiala_text" style="width: 160px;"></div>
+				    		<div class="xiala_text_val" style="display: none;"></div>
+				    		
+				    		<div class="xiala_img">
+				    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+				    		</div>
+				    		<div class="xiala_1">
+				    			<div class="test test-1">
+							        <div class="scrollbar"></div>
+							        <ul class="xiala_ul"></ul>
+								</div>
+				    		</div>
+				    	</div>
+					</div>
+					<div class="the_city_proper clear">
+						<div class="text">城区：</div>
+						<div class="xiala" id="district_code_id">
+				    		<div class="xiala_text" style="width: 160px;"></div>
+				    		<div class="xiala_text_val" style="display: none;"></div>
+				    		
+				    		<div class="xiala_img">
+				    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+				    		</div>
+				    		<div class="xiala_1">
+				    			<div class="test test-1">
+							        <div class="scrollbar"></div>
+							        <ul class="xiala_ul"></ul>
+								</div>
+				    		</div>
+				    	</div>
+						<div class="text text1">街道/乡镇：</div>
+						<div class="xiala" id="street_code_id">
+				    		<div class="xiala_text" style="width: 160px;"></div>
+				    		<div class="xiala_text_val" style="display: none;"></div>
+				    		
+				    		<div class="xiala_img">
+				    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+				    		</div>
+				    		<div class="xiala_1">
+				    			<div class="test test-1">
+							        <div class="scrollbar"></div>
+							        <ul class="xiala_ul"></ul>
+								</div>
+				    		</div>
+				    	</div>
+					</div>
+					<div class="politics_status clear">
+						<div class="text">政治面目：</div>
+						<div class="xiala" id="politics_status">
+				    		<div class="xiala_text" data-val = ""></div>
+				    		<div class="xiala_text_val" style="display: none;"></div>
+				    		<div class="xiala_img">
+				    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+				    		</div>
+				    		<div class="xiala_1">
+				    			<div class="test test-1">
+							        <div class="scrollbar"></div>
+							        <ul class="xiala_ul"></ul>
+								</div>
+				    		</div>
+				    	</div>
+					</div>
+					<div class="baocun clear" style="background-color: #DE2121;">
+							保存设置
+					</div>
+				</div>
+    		</div>
+    	</div>
+    	
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	//logo
+function system(){
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{
+ 			token:localStorage.lastname,//登录令牌
+	 	},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$(".head_le img").attr('src',res.data.logo)
+	 			$("head").append(`
+	 				<meta name="keywords" content="`+res.data.key+`">
+					<meta name="description" content="`+res.data.des+`">	
+	 			`)
+	 			$('#head_input').attr('placeholder',res.data.search);
+	 			$("#search").attr('placeholder',res.data.search);
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+ }
+ system();
+ function touxiang(){
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/My/head_img",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{
+	 		token:localStorage.lastname,//登录令牌
+	 	},
+	 	success:function(res){
+	 		if(res.code==200){
+				$('.detection_yes').css('display','block')
+				$('.detection_no').css('display','none')
+				$('.detection_yes_img').attr("src",res.avatar)
+	 		}else if(res.code==-1){
+				$('.detection_yes').css('display','none')
+				$('.detection_no').css('display','block')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+}
+touxiang();
+	 $("#bases").load("base.html");
+	//获取城市
+	function chengshi(){
+		$.ajax({
+	    	type:'POST',
+	        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+	        data:{
+		 		token:localStorage.lastname,//登录令牌
+	        },
+	        dataType:"json", 
+	        success:function (res) {
+	        	console.log(res)
+	        	$("#province_code_id .xiala_text").html('请选择')
+	        	for(let i=0;i<res.data.length;i++){
+	        		$("#province_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+	        	}
+        		$("#province_code_id li").click(function(e){
+					$("#province_code_id .xiala_text").html($(this)[0].outerText)
+					$("#province_code_id .xiala_text_val").html($(this)[0].dataset.value)
+					$.ajax({
+				    	type:'POST',
+				        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+				        data:{
+				        	parent_code_id:$(this)[0].dataset.value,
+					 		token:localStorage.lastname,//登录令牌
+				        },
+				        dataType:"json", 
+				        success:function (res) {
+			 				$("#city_code_id .xiala_text").html('请选择')
+			        		$("#city_code_id .xiala_ul").html('')
+				        	for(let i=0;i<res.data.length;i++){
+				        		$("#city_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+				        	}
+				        	$("#city_code_id li").click(function(e){
+								$("#city_code_id .xiala_text").html($(this)[0].outerText)
+								$("#city_code_id .xiala_text_val").html($(this)[0].dataset.value)
+								
+								$.ajax({
+							    	type:'POST',
+							        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+							        data:{
+							        	parent_code_id:$(this)[0].dataset.value,
+								 		token:localStorage.lastname,//登录令牌
+							        },
+							        dataType:"json", 
+							        success:function (res) {
+						 				$("#district_code_id .xiala_text").html('请选择')
+						        		console.log(res)
+						        		$("#district_code_id .xiala_ul").html('')
+							        	for(let i=0;i<res.data.length;i++){
+							        		$("#district_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+							        	}
+							        	$("#district_code_id li").click(function(e){
+											$("#district_code_id .xiala_text").html($(this)[0].outerText)
+											$("#district_code_id .xiala_text_val").html($(this)[0].dataset.value)
+											$.ajax({
+										    	type:'POST',
+										        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+										        data:{
+										        	parent_code_id:$(this)[0].dataset.value,
+											 		token:localStorage.lastname,//登录令牌
+										        },
+										        dataType:"json", 
+										        success:function (res) {
+									 				$("#street_code_id .xiala_text").html('请选择')
+									        		$("#street_code_id .xiala_ul").html('')
+										        	for(let i=0;i<res.data.length;i++){
+										        		$("#street_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+										        	}
+										        	$("#street_code_id li").click(function(e){
+														$("#street_code_id .xiala_text").html($(this)[0].outerText)
+														$("#street_code_id .xiala_text_val").html($(this)[0].dataset.value)
+													})
+										        }
+										    });
+										})
+							        }
+							    });
+							})
+				        }
+				    });
+				})
+	        }
+	    });
+	}
+	chengshi()
+	let province_code_id_num = 0;
+	let city_code_id_num = 0;
+	let district_code_id_num = 0;
+	let street_code_id_num = 0;
+	$('#province_code_id').click(function(){
+		province_code_id_num++;
+		if(province_code_id_num%2==1){
+			$("#province_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			$("#province_code_id .xiala_1").css('display','block')
+		}else{
+			$("#province_code_id .xiala_1").css('display','none')
+			$("#province_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+		}
+		
+		//市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		
+		//城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+	})
+//		市
+	$('#city_code_id').click(function(){
+		city_code_id_num++;
+		if(city_code_id_num%2==1){
+			$("#city_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			$("#city_code_id .xiala_1").css('display','block')
+		}else{
+			$("#city_code_id .xiala_1").css('display','none')
+			$("#city_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+		}
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		//城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+
+	})
+
+	//	城区
+	$('#district_code_id').click(function(){
+		district_code_id_num++;
+		if(district_code_id_num%2==1){
+			$("#district_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			$("#district_code_id .xiala_1").css('display','block')
+		}else{
+			$("#district_code_id .xiala_1").css('display','none')
+			$("#district_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+		}
+		
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+	})
+	//街道/乡镇
+	$('#street_code_id').click(function(){
+		street_code_id_num++;
+		if(street_code_id_num%2==1){
+			$("#street_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			$("#street_code_id .xiala_1").css('display','block')
+		}else{
+			$("#street_code_id .xiala_1").css('display','none')
+			$("#street_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+		}
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+		///城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+		`)
+	})
+	//政治面貌
+	function mainmao(){
+		$.ajax({
+	    	type:'POST',
+	        url: 'https://api.htlocalservice.com/muke/public/api/Politicsstatus/index',
+	        data:{
+		 		token:localStorage.lastname,//登录令牌
+	        },
+	        dataType:"json", 
+	        success:function (res) {
+	        	$("#politics_status .xiala_ul").html('')
+	        	for(let i=0;i<res.data.length;i++){
+	        		$("#politics_status .xiala_ul").append('<li data-value='+res.data[i].id+'>'+res.data[i].name+'</li>')
+	        	}
+	        	$("#politics_status li").click(function(e){
+					$("#politics_status .xiala_text").html($(this)[0].outerText)
+					$("#politics_status .xiala_text_val").html($(this)[0].dataset.value)
+				})
+	        }
+	    });
+	}
+	mainmao()
+	//街道/乡镇
+	let politics_status_num = 0; 
+	$('#politics_status').click(function(){
+		politics_status_num++;
+		if(politics_status_num%2==1){
+			$("#politics_status .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			$("#politics_status .xiala_1").css('display','block')
+		}else{
+			$("#politics_status .xiala_1").css('display','none')
+			$("#politics_status .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+		}
+	})
+	
+   	//手机验证码登录
+//	var nickname = ''; //昵称
+//	var real_name = ''; //真实姓名
+//	var identity_card = ''; //身份证号
+//	var province_code_id = ''; //省份/直辖市地区编码
+//	var city_code_id = ''; //市区地区编码select
+//	var district_code_id = ''; //县/区地区编码
+//	var street_code_id = ''; //街道/乡镇地区编码
+//	var politics_status = ''; //政治面貌id
+//	 $("#nickname").bind('input propertychange', function () {
+//      nickname = $("#nickname").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  }); $("#real_name").bind('input propertychange', function () {
+//      real_name = $("#real_name").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  }); $("#identity_card").bind('input propertychange', function () {
+//      identity_card = $("#identity_card").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  });
+//   $("#province_code_id").click(function(){
+//  	province_code_id = $("#province_code_id").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  })
+//  $("#city_code_id").click(function(){
+//  	city_code_id = $("#city_code_id").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  })
+//  $("#district_code_id").click(function(){
+//  	district_code_id = $("#district_code_id").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  })
+//  $("#street_code_id").click(function(){
+//  	street_code_id = $("#street_code_id").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  })
+//  $("#politics_status").click(function(){
+//  	politics_status = $("#politics_status").val();
+//      if(nickname!=''&&real_name!=''&&identity_card!=''&&province_code_id!=''&&city_code_id!=''&&district_code_id!=''&&street_code_id!=''&&politics_status!=''){
+//  		$(".baocun").css('background','#DE2121')
+//      }else{
+//  		$(".baocun").css('background',' rgba(222, 33, 33, 0.2)')
+//      }
+//  }) 
+	$(".baocun").click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/completeInfo",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 		avatar:'',//头像URL
+		 		nickname:$('#nickname').val(),//昵称
+		 		truename:$('#real_name').val(),//真实姓名
+		 		id_card:$('#identity_card').val(),//身份证号
+		 		province_code_id:$("#province_code_id .xiala_text_val").html(),//省份/直辖市地区编码
+		 		city_code_id:$("#city_code_id .xiala_text_val").html(),//市区地区编码
+		 		district_code_id:$("#district_code_id .xiala_text_val").html(),//县/区地区编码
+		 		street_code_id:$("#street_code_id .xiala_text_val").html(),//街道/乡镇地区编码
+		 		politics_status:$("#politics_status .xiala_text_val").html(),//政治面貌id
+		 	},
+		 	success:function(res){
+		 		console.log(res)
+		 		if(res.code==200){
+//		 			location.replace('home.html');
+					success_pop('完善成功',2000)
+					setTimeout(function(){
+						window.location.href='home.html';
+					},2000)
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	 $.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 完善信息')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+</script>

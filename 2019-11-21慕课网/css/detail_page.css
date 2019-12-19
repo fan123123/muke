@@ -1,0 +1,359 @@
+#detail_page{
+	width: 100%;
+	background: #C4C4C4;
+	padding: 24px 0;
+}
+.detail_page_le{
+	width: 780px;
+	background: #262626;
+	height: 452px;
+	float: left;
+}
+.detail_page_ri{
+	height: 396px;
+	width: 336px;
+	float: left;
+	background: #404040;
+	padding: 24px 32px 33px 32px;
+	position: relative;
+}
+.detail_page_ri_top{
+	/*文本溢出两行出省略号*/
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	/*允许行数*/
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 32px;
+	color: #FFFFFF;
+}
+.detail_page_ri_leixing{
+	border: 1px solid #C4C4C4;
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 16px;
+	color: #C4C4C4;
+	width: auto;
+	display: inline-block;
+	padding: 2px 8px;
+	margin-top: 16px;
+}
+.detail_page_ri_jiangshi{
+	font-size: 14px;
+	line-height: 22px;
+	color: #FFFFFF;
+	margin-top: 20px;
+}
+.detail_page_ri_xia{
+	margin-top: 8px;
+}
+.detail_page_ri_xia img{
+	width: 40px;
+	height: 40px;
+	background: #C4C4C4;
+	border-radius: 50%;
+	margin-right: 16px;
+	float: left;
+}
+.detail_page_ri_xia span{
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 40px;
+	color: #FFFFFF;
+	display: block;
+	float: left;
+}
+.detail_page_ri_xuexi{
+	position: absolute;
+	bottom: 32px;
+	left: 32px;
+	width: 336px;
+}
+.detail_page_ri_xuexi_le{
+	font-size: 14px;
+	line-height: 22px;
+	color: #FFFFFF;
+	float: left;
+}
+.detail_page_ri_xuexi_ri1,.detail_page_ri_xuexi_ri2{
+	font-size: 14px;
+	line-height: 22px;
+	color: #FFFFFF;
+	float: right;
+	
+}
+.detail_page_ri_xuexi_ri2 span{
+	width: 42px;
+	float: left;
+	display: block;
+	text-align: left;
+	cursor: pointer;
+}
+.detail_page_ri_xuexi_ri2 svg{
+	float: left;
+	margin-right: 8px;
+	margin-left: 36px;
+	padding: 1px 4px;
+	cursor: pointer;
+}
+.detail_page_ri_xuexi_ri1 img,.detail_page_ri_xuexi_ri2 img{
+	width: 24px;
+	height: 24px;
+	float: left;
+	margin-right: 8px;
+	margin-left: 36px;
+}
+.course_introduction{
+	width: 599px;
+	border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+.course_introduction,.The_lecturer_introduction{
+	font-size: 14px;
+	line-height: 24px;
+	color: rgba(0, 0, 0, 0.8);
+	float: left;
+}
+.The_lecturer_introduction img,.course_introduction img{
+	width: 24px;
+	height: 24px;
+	margin-right: 8px;
+	display: inline-block;
+    vertical-align: middle;
+}
+.The_lecturer_introduction{
+	padding-left: 24px;
+	width: 505px;
+	border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+.The_lecturer_introduction_head_portrait{
+	margin-top: 16px;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	color: #000000;
+}
+.The_lecturer_introduction_text{
+	font-size: 14px;
+	line-height: 22px;
+	color: #6E6E6E;
+	margin-top: 12px;
+}
+.The_lecturer_introduction_head_portrait img{
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	margin-right: 16px;
+}
+.course_introduction_text{
+	padding: 8px 28px 0 34px;
+	font-size: 14px;
+	line-height: 22px;
+	color: #6E6E6E;
+}
+#video{
+	width: 100%;
+	background-color: #fff;
+}
+.new_course_top{
+	padding-top: 20px;
+	margin-bottom: 12px;
+}
+.new_course_top_le{
+	float: left;
+	font-size: 18px;
+	line-height: 26px;
+	font-weight: 600;
+	color: #342929;
+}
+.new_course_top_ri{
+	float: right;
+	font-size: 14px;
+	line-height: 26px;
+	color: #18A0FB;
+}
+.newest_main{
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	margin-bottom: :;;
+	background-color: #fff;
+	margin-bottom: 24px;
+	width: 280px;
+	float: left;
+	margin-right: 20px;
+}
+.newest_main:nth-child(4){
+	margin-right: 0px;
+}
+.newest_time{
+	width: 48px;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFFFFF;
+	background: #D82929;
+	border-radius: 4px;
+	position:absolute;
+	bottom: 8px;
+	right: 8px;
+}
+.newest_main_img{
+	width: 100%;
+}
+.newest_main_zhong{
+	padding: 0 16px;
+	margin-top: 16px;
+}
+.newest_main_zhong_form{
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 16px;
+	color: rgba(0, 0, 0, 0.6);
+	float: left;
+	padding: 2px 8px;
+}
+.newest_main_zhong_teacher{
+	float: right;
+	font-size: 12px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 0.6);
+	padding: 2px 0;
+	
+}
+.newest_main_xia{
+	padding: 12px 16px;
+}
+p{
+	margin: 0;
+	padding: 0;
+	/*文本溢出两行出省略号*/
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	/*允许行数*/
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+/*答题*/
+#answer{
+	/*width: 720px;*/
+	width: 672px;
+	/*width: 50%;*/
+	background: #FFFFFF;
+	box-shadow: 0px 8px 48px rgba(0, 0, 0, 0.16);
+	border-radius: 8px;
+	position: fixed;
+	top:104px;
+	left: 50%;
+	margin-left: -335px;
+	/*margin-left: -25%;*/
+	padding: 24px;
+	z-index: 10000;
+	
+}
+.answer_p{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 26px;
+	color: rgba(0, 0, 0, 0.8);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-bottom: 8px;
+}
+.answer_inner{
+	font-size: 16px;
+	line-height: 26px;
+	color: #000000;
+	margin-top: 16px;
+}
+.answer_answer{
+	margin-bottom: 24px;
+}
+.answer_answer li{
+	padding: 13px 24px;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 24px;
+	margin-top: 16px;
+	cursor: pointer;
+}
+
+.answer_sub{
+	float: right;
+	padding: 12px 24px;
+	font-size: 14px;
+	line-height: 22px;
+	color: #FFFFFF;
+	background: #DE2121;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.answer_cancel{
+	float: right;	
+	padding: 12px 24px;
+	font-size: 14px;
+	line-height: 22px;
+	color: rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+}
+/*回答对错弹框*/
+#duicuo{
+	width: 432px;
+	position: fixed;
+	top:20%;
+	left: 50%;
+	margin-left: -216px;
+	padding: 24px;
+	z-index: 10000;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0px 8px 48px rgba(0, 0, 0, 0.16);
+}
+#duicuo img{
+	height: 120px;
+	margin: 0 auto;
+	margin-top: 40px;
+	display: block;
+}
+#duicuo span{
+	position: absolute;
+	top: 26px;
+	right: 26px;
+	color: rgba(0, 0, 0, 0.2);
+	font-size: 24px;
+	cursor: pointer;
+}
+#duicuo p{
+	text-align: center;
+	font-size: 20px;
+	line-height: 28px;
+	font-weight: 600;	
+	color: rgba(0, 0, 0, 0.8);
+	margin: 24px 0;
+}
+#duicuo .duicuo_inner{
+	font-size: 16px;
+	line-height: 26px;
+	color: #000000;
+}
+#duicuo .solution{
+	padding: 13px 24px;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 24px;
+	margin-top: 16px;
+	color: #333;
+}
+.got_it{
+	cursor: pointer;
+	width: 120px;
+	background: #DE2121;
+	border-radius: 8px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #FFFFFF;
+	margin: 0 auto;
+	padding: 12px;
+	text-align: center;
+	margin-top: 24px;
+}

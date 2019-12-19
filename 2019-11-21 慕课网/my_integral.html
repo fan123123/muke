@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my_integral.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<div id="my_favorite">
+    		<div id="mylearninfo"></div>
+    		<div class="my_favorite_main clear">
+    			<div class="inner clear">
+    				<div class="my_favorite_main_le">
+	    				<ul>
+	    					<li><a href="my_favorite.html">我的收藏</a></li>
+	    					<li><a href="my_answer.html" >我的答题</a></li>
+	    					<li><a href="my_kaoshi.html" >我的考试</a></li>
+	    					<!--<li>我的订单</li>-->
+	    					<li class="ac">我的积分</li>
+	    					<li><a href="study_history.html">学习历史</a></li>
+	    					<!--<li>消息通知</li>-->
+	    					<li><a href="personal_setting.html">个人设置</a></li>
+	    				</ul>
+	    				<div class="tuichu">
+	    					安全退出
+	    				</div>
+	    			</div>
+	    			<div class="my_favorite_main_ri">
+	    				<div class="my_favorite_main_ri_top">
+	    					<p>我的积分</p>
+	    					<div class="my_favorite_main_ri_top_jifen">
+	    						<img src="img/jifen.png"/>
+	    						<span>我的积分</span>
+	    					</div>
+	    				</div>
+						<div class="my_intrgral_main_ri_mian">
+							<ul class="clear myIntegral">
+								<li data-id = "4" class="ac">概览</li>
+								<li data-id = "3">课程积分</li>
+								<li data-id = "2">答题积分</li>
+								<li data-id = "1">登录积分</li>
+								<div class="my_intrgral_main_ri_mian_ri">总积分：<span>--</span></div>
+							</ul>
+	    				</div>
+	    				<!--课程积分-->
+						<div class="course" style="display: none;">
+							
+						</div>
+						<!--没有课程积分提示-->
+						<div id="no" class="course_no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！还没有获得任何课程积分</p>
+						</div>
+	    				<!--答题积分-->
+						<div class="The_answer_points" style="display: none;">
+							
+						</div>
+						<!--没有答题积分提示-->
+						<div id="no" class="The_answer_points_no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！还没有获得任何答题积分</p>
+						</div>
+	    				<!--登录积分-->
+						<div class="Login_integral" style="display: none;">
+											
+						</div>
+						<!--没有答题积分提示-->
+						<!--<div id="no" class="The_answer_points_no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！还没有获得任何答题积分</p>
+						</div>-->
+	    				<!--概览-->
+	    				<style type="text/css">
+	    					.overview_top{
+	    						width: 100%;
+	    					}
+	    					.overview_top_le{
+	    						float: left;
+	    						margin-top: 48px;
+	    					}
+	    					.overview_top_le_mian{
+	    						float: left;
+	    						text-align: center;
+	    						margin-right: 96px;
+	    					}
+	    					.overview_top_le_mian_top{
+	    						font-size: 14px;
+								line-height: 22px;
+								color: rgba(0, 0, 0, 0.6);
+	    					}
+	    					.overview_top_le_mian_bot{
+	    						font-weight: 600;
+	    						font-size: 24px;
+								line-height: 32px;
+								color: #FFAF45;
+	    					}
+	    					.overview_top_ri{
+	    						float: right;
+	    						width: 240px;
+								height: 128px;
+								background-image: url(img/dengji.png);
+								background-repeat: no-repeat;
+								background-size: 100%;
+								margin-top: 16px;
+	    					}
+	    					
+	    					.overview_top_ri_top{
+	    						font-size: 12px;
+								line-height: 20px;
+								color: rgba(0, 0, 0, 0.6);
+								text-align: center;
+								margin-top: 34px;
+	    					}
+	    					.overview_top_ri_bot{
+	    						font-weight:600;
+								font-size: 16px;
+								line-height: 24px;
+								color: #FFAF45;
+								text-align: center;
+	    					}
+	    					.overview_top_ri_img{
+	    						width: 64px;
+								height: 64px;
+								display: block;
+								margin: 0 auto;
+								margin-top: 5px;
+								transform:rotate(7deg);
+								-ms-transform:rotate(7deg); 	/* IE 9 */
+								-moz-transform:rotate(7deg); 	/* Firefox */
+								-webkit-transform:rotate(7deg); /* Safari 和 Chrome */
+								-o-transform:rotate(7deg); 	/* Opera */
+	    					}
+	    					.overview_bot_top{
+	    						margin-top: 24px;
+	    					}
+	    					.ranking{
+	    						font-weight: 600;
+								font-size: 16px;
+								line-height: 24px;
+								color: rgba(0, 0, 0, 0.8);
+								float: left;
+	    					}
+	    					.examine{
+	    						float: right;
+	    						font-size: 16px;
+								line-height: 24px;
+								color: rgba(24, 160, 251, 0.8);
+								cursor: pointer;
+	    					}
+	    					.examine:hover{
+	    						color: #0486DE;
+	    					}
+	    					.overview_bot_bot{
+	    						margin-top: 8px;
+	    					}
+	    					.overview_bot_bot_mian{
+	    						padding-top: 16px;
+	    					}
+	    					.overview_bot_bot_mian_le{
+	    						float: left;
+	    						width: 30px;
+								height: 18px;
+								margin-right: 70px;
+								font-weight: 600;
+								font-size: 14px;
+								line-height: 22px;
+								color: rgba(0, 0, 0, 0.8);
+								margin-top: 11px;
+    							text-align: center;
+	    					}
+	    					.overview_bot_bot_mian_le img{
+	    						width: 30px;
+								height: 18px;
+	    					}
+	    					.overview_bot_bot_mian_ri{
+	    						border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+	    						float:left;
+	    						width: 780px;
+	    						padding-bottom: 16px;
+	    					}
+	    					.overview_bot_bot_mian_ri_le{
+	    						float: left;
+	    					}
+	    					.overview_bot_bot_mian_ri_le img{
+	    						width: 40px;
+								height: 40px;
+								background: #C4C4C4;
+								border-radius: 50%;
+								float: left;
+								margin-right: 8px;
+	    					}
+	    					.overview_bot_bot_mian_ri_le div{
+	    						font-weight: 600;
+								font-size: 14px;
+								line-height: 40px;
+								color: rgba(0, 0, 0, 0.8);
+								float: left;
+								
+	    					}
+	    					.overview_bot_bot_mian_ri_ri{
+	    						float: right;
+	    						margin-left: 40px;
+	    						margin-top: 9px;
+	    					}
+	    					.overview_bot_bot_mian_ri_ri_le{
+	    						font-size: 14px;
+								line-height: 22px;
+								color: rgba(0, 0, 0, 0.8);
+								float: left;
+								margin-right: 8px;
+	    					}
+	    					.overview_bot_bot_mian_ri_ri_ri{
+	    						font-weight: 600;
+								font-size: 14px;
+								line-height: 22px;
+								color: #FF9B17;
+								float: left;
+								width: 50px;
+								text-align: right;
+								overflow: hidden;
+	    					}
+	    				</style>
+						<div class="overview">
+							<div class="overview_top clear">
+								<div class="overview_top_le clear">
+									<div class="overview_top_le_mian">
+										<div class="overview_top_le_mian_top">
+											当前总积分
+										</div>
+										<div class="overview_top_le_mian_bot integral_all"></div>
+									</div>
+									
+									<div class="overview_top_le_mian">
+										<div class="overview_top_le_mian_top">
+											总排名
+										</div>
+										<div class="overview_top_le_mian_bot rank_all"></div>
+									</div>
+									<div class="overview_top_le_mian">
+										<div class="overview_top_le_mian_top">
+											本季度积分
+										</div>
+										<div class="overview_top_le_mian_bot integral_jidu"></div>
+									</div>
+									<div class="overview_top_le_mian">
+										<div class="overview_top_le_mian_top">
+											季度排名
+										</div>
+										<div class="overview_top_le_mian_bot rank_jidu"></div>
+									</div>
+								</div>
+								<div class="overview_top_ri">
+									<div class="overview_top_ri_top">学习等级</div>
+									<div class="overview_top_ri_bot grade">专业</div>
+									<img class="overview_top_ri_img" src="img/pointer.png"/>
+								</div>
+							</div>
+							<div class="overview_bot clear">
+								<div class="overview_bot_top clear">
+									<div class="ranking">
+										总排行榜
+									</div>
+									<div class="examine">
+										查看季度排行榜
+									</div>
+								</div>
+								<!--没有课程积分提示-->
+								<div id="no" class="overview_bot_bot_none" style="display: none;padding-top: 80px;">
+									<img src="img/cuo.png"/>
+									<p>抱歉！还没有任何排名</p>
+								</div>
+								<div class="overview_bot_bot"></div>
+							</div>
+						</div>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="tuichu_tankuang clear" style="display: none;">
+				<span class="tuichu_tankuang_sp" style="cursor: pointer;">×</span>
+				<p class="tuichu_tankuang_p">确定要退出账号吗，您将无法浏览部分内容。</p>
+				<div class="tuichu_tankuang_no"style="cursor: pointer;">取消</div>
+				<div class="tuichu_tankuang_yes"style="cursor: pointer;">确定</div>
+			</div>
+    	</div>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	$("#head").load("head.html");
+	$("#bases").load("base.html");
+	$("#mylearninfo").load("mylearninfo.html");
+	//	积分概览
+	function integralOverview(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/integralOverview",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		console.log(res)
+		 		if(res.code==200){
+		 			$('.integral_all').html(res.data.integral_all)
+		 			$('.rank_all').html(res.data.rank_all)
+		 			$('.integral_jidu').html(res.data.integral_jidu)
+		 			$('.rank_jidu').html(res.data.rank_jidu)
+		 			$('.grade').html(res.data.grade)
+		 			if(res.data.leval=1){
+		 				$('.overview_top_ri_img').css('transform','rotate(-70deg)')
+		 				$('.overview_top_ri_img').css('-ms-transform','rotate(-70deg)')
+		 				$('.overview_top_ri_img').css('-moz-transform','rotate(-70deg)')
+		 				$('.overview_top_ri_img').css('-webkit-transform','rotate(-70deg)')
+		 				$('.overview_top_ri_img').css('-o-transform','rotate(-70deg)')
+		 			}else if(res.data.leval=2){
+		 				$('.overview_top_ri_img').css('transform','rotate(-32deg)')
+		 				$('.overview_top_ri_img').css('-ms-transform','rotate(-32deg)')
+		 				$('.overview_top_ri_img').css('-moz-transform','rotate(-32deg)')
+		 				$('.overview_top_ri_img').css('-webkit-transform','rotate(-32deg)')
+		 				$('.overview_top_ri_img').css('-o-transform','rotate(-32deg)')
+		 			}else if(res.data.leval=3){
+		 				$('.overview_top_ri_img').css('transform','rotate(26deg)')
+		 				$('.overview_top_ri_img').css('-ms-transform','rotate(26deg)')
+		 				$('.overview_top_ri_img').css('-moz-transform','rotate(26deg)')
+		 				$('.overview_top_ri_img').css('-webkit-transform','rotate(26deg)')
+		 				$('.overview_top_ri_img').css('-o-transform','rotate(26deg)')
+		 			}else if(res.data.leval=4){
+		 				$('.overview_top_ri_img').css('transform','rotate(64deg)')
+		 				$('.overview_top_ri_img').css('-ms-transform','rotate(64deg)')
+		 				$('.overview_top_ri_img').css('-moz-transform','rotate(64deg)')
+		 				$('.overview_top_ri_img').css('-webkit-transform','rotate(64deg)')
+		 				$('.overview_top_ri_img').css('-o-transform','rotate(64deg)')
+		 			}
+		 			
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 			$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 integralOverview();
+	 //榜单  1  =  排行   2  = 季度
+	function rank(a){
+		if( a == 1){
+			$(".ranking").html('总排行榜')
+			$(".examine").html('查看季度排行榜')
+		}else{
+			$(".ranking").html('季度排行榜')
+			$(".examine").html('查看总排行榜')
+		}
+		$(".overview_bot_bot").html('');
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/rank",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 		type:a,
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			if(res.data == ''){
+		 				$('.overview_bot_bot_none').css('display','block')
+		 			}else{
+		 				$('.overview_bot_bot_none').css('display','none')
+		 				let num = 0;
+			            let num1 = 0;
+			            for (let i = 0; i <= res.data.length - 1; i++) {
+			              num = i;
+			              num1 = res.data[i].integral;
+			              let num2 = 0;
+			              if (res.data.length <= 1) {
+			                var key = "num";
+			                var value = num + 1 + '.';
+			                res.data[num][key] = value;
+			              } else if (num + 1 >= res.data.length) {
+			                if (num1 != res.data[num - 1].integral) {
+			                  var key = "num";
+			                  var value = num + 1 + '.';
+			                  res.data[num][key] = value;
+			                }else{
+		                		var key = "num";
+			                    var value = '';
+			                    res.data[num][key] = value;
+			                }
+			              } else {
+			              	if(num - 1 == -1){
+				                  var key = "num";
+				                  var value = num + 1 + '.'
+				                  res.data[num][key] = value;
+			              	}else{
+			              		if (num1 == res.data[num + 1].integral&&num1 != res.data[num - 1].integral){
+				                  var key = "num";
+				                  var value = num + 1 + '.';
+				                  res.data[num][key] = value;
+				                } else if (num1 == res.data[num - 1].integral) {
+				                  var key = "num";
+				                  var value = '';
+				                  res.data[num][key] = value;
+				                } else {
+				                  var key = "num";
+				                  var value = num + 1 + '.'
+				                  res.data[num][key] = value;
+				                }
+			              	}
+			              }
+			            }
+			            $(".overview_bot_bot").html('');
+					 	for(let i=0;i<=res.data.length-1;i++){
+					 			let a =`<div class="overview_bot_bot_mian clear">
+									<div class="overview_bot_bot_mian_le">`
+								let b= '';	
+									if(res.data[i].num == 1){
+										b+= `<img src="img/one.png"/>`
+										
+									}else if(res.data[i].num == 2){
+										b+= `<img src="img/two.png"/>`
+										
+									}else if(res.data[i].num == 3){
+										b+= `<img src="img/three.png"/>`
+										
+									}else{
+										b+= ``+res.data[i].num+``
+									}
+									
+									a+=b;	
+									let c = `</div>
+									<div class="overview_bot_bot_mian_ri clear">
+										<div class="overview_bot_bot_mian_ri_le clear">
+											<img src="`+res.data[i].avatar+`"/>
+											<div>`+res.data[i].nickname+`</div>
+										</div>
+										<div class="overview_bot_bot_mian_ri_ri clear">
+											<div class="overview_bot_bot_mian_ri_ri_le">
+												积分
+											</div>
+											<div class="overview_bot_bot_mian_ri_ri_ri">
+												`+res.data[i].integral+`
+											</div>
+										</div>
+										<div class="overview_bot_bot_mian_ri_ri clear">
+											<div class="overview_bot_bot_mian_ri_ri_le">
+												学习等级
+											</div>
+											<div class="overview_bot_bot_mian_ri_ri_ri">
+												`+res.data[i].grade+`
+											</div>
+										</div>
+									</div>
+								</div>`;
+								a+=c
+					 		$(".overview_bot_bot").append(a);
+					 	}
+		 			}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 			$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+		 	}
+		 })
+	 }
+	 let examine_num = 1 ;
+	 rank(examine_num);
+	 $(".examine").click(function(){
+	 	examine_num++;
+	 	if(examine_num%2 == 0){
+	 		rank(2);
+	 	}else{
+	 		rank(1);
+	 	}
+	 })
+	//	 我的积分
+	function mylearninfo(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/mylearninfo",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			$(".my_intrgral_main_ri_mian_ri").html('')
+		 			if(res.data.integral == null){
+		 				$(".my_intrgral_main_ri_mian_ri").append(`
+			 				总积分：<span>0</span>
+			 			`)
+		 			}else{
+		 				$(".my_intrgral_main_ri_mian_ri").append(`
+			 				总积分：<span>`+res.data.integral+`</span>
+			 			`)
+		 			}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 			$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 mylearninfo();
+	 function myIntegral(a){
+	 	$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/myIntegral",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		type:a,
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			if(a==4){
+		 				$('.course_no').css('display','none');
+		 				$('.The_answer_points_no').css('display','none');
+		 			}else if(a==3){
+		 				if(res.data==''){
+		 					console.log(11999)
+		 					$('.course_no').css('display','block');
+			 				$('.The_answer_points_no').css('display','none');
+		 					
+			 			}else{
+			 				$('.course_no').css('display','none');
+			 				$('.The_answer_points_no').css('display','none');
+			 			}
+		 				//课程
+						$(".course").html('')
+						//答题
+						$(".The_answer_points").html('')
+						//登录
+						$(".Login_integral").html('')
+						for(let i=0;i<res.data.length;i++){
+							$(".course").append(`
+								<div class="course_main clear">
+									<div class="course_main_le">
+										<img data-id='`+res.data[i].video_id+`' src="`+res.data[i].video_img+`"/>
+										<span>`+res.data[i].duration+`</span>
+									</div>
+									<div class="course_main_ri">
+										<p data-id='`+res.data[i].video_id+`' style='cursor: pointer'>`+res.data[i].title+`</p>
+										<span class="leixing" style='cursor: pointer' data-id='`+res.data[i].type_id+`' data-fid='`+res.data[i].type_fid+`'>
+											`+res.data[i].type+`
+										</span>
+										<div class="course_main_ri_bottom clear">
+											<div class="course_main_ri_bottom_le">
+												播放时间：
+												<span>`+res.data[i].play_time+`</span>
+											</div>
+											<div class="course_main_ri_bottom_ri">
+												获得积分：
+												<span>`+res.data[i].integral+`</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							`)
+							$(".course_main_le img").click(function(e){
+								window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+							})
+							$(".course_main_ri p").click(function(e){
+								window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+							})
+							$(".leixing").click(function(e){
+				 				localStorage.pid=$(this)[0].dataset.fid;
+		 						window.location.href='Boutique.html?'+e.currentTarget.dataset.id;
+				 			})
+						}
+						
+		 			}else if(a==2){
+		 				if(res.data==''){
+		 					$('.The_answer_points_no').css('display','block');
+		 					$('.course_no').css('display','none');
+			 			}else{
+			 				$('.The_answer_points_no').css('display','none');
+			 				$('.course_no').css('display','none');
+			 			}
+		 				//课程
+						$(".course").html('')
+						//答题
+						$(".The_answer_points").html('')
+						//登录
+						$(".Login_integral").html('')
+						for(let i=0;i<res.data.length;i++){
+								let a = `<div class="The_answer_points_mian">
+									<p>`+res.data[i].question_title+`</p>
+									<div class="The_answer_points_mian_zhong clear">
+										<p>课程：</p>
+										<span  data-id='`+res.data[i].video_id+`'>`+res.data[i].title+`</span>
+									</div>
+									<div class="course_main_ri_bottom clear">
+										
+										<div class="course_main_ri_bottom_le">
+											答题时间：
+											<span>`+res.data[i].play_time+`</span>
+										</div>
+										<div class="course_main_ri_bottom_ri">
+											获得积分：
+											<span>`+res.data[i].integral+`</span>
+										</div>
+										<div class="my_favorite_main_ri_title_ri_bot">`
+								let b = '';
+								if(res.data[i].is_right==1){
+									b +=`<img src="img/zhengque.png"/>
+										<span  style="color: #39B54A">回答正确</span>`
+								}else{
+									b +=`
+										<img src='img/cuo_1.png'/>
+		    							<span style="color: #FF0000">回答错误</span>`
+								}
+								a+=b;
+								
+								let c = `</div>
+									</div>
+								</div>`;
+								a+=c;
+							$(".The_answer_points").append(a)
+						}
+						$('.The_answer_points_mian_zhong span').click(function(e){
+							window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+//							location.replace('detail_page.html?'+e.currentTarget.dataset.id);
+						})
+		 			}else if(a==1){
+		 				$('.course_no').css('display','none');
+		 				$('.The_answer_points_no').css('display','none');
+		 				//课程
+						$(".course").html('')
+						//答题
+						$(".The_answer_points").html('')
+						//登录
+						$(".Login_integral").html('')
+						
+						for(let i=0;i<res.data.length;i++){
+							$(".Login_integral").append(`
+								<div class="course_main_ri_bottom clear">
+									<div class="course_main_ri_bottom_le">
+										<span>`+res.data[i].play_time+` 登录 </span>
+									</div>
+									<div class="course_main_ri_bottom_ri">
+										获得积分：
+										<span>`+res.data[i].integral+`</span>
+									</div>
+								</div>	
+							`)
+						}
+						
+		 			}
+		 		}if(res.code==-1){
+					window.location.href='login.html';
+					$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-200){
+					window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 myIntegral(4);
+	$(".myIntegral li").click(function(){
+		for(let i=0;i<$(".myIntegral li").length;i++){
+			$(".myIntegral li").eq(i).removeClass('ac')
+		}
+		$(this).addClass('ac');
+		let that = $(this)
+		if(that[0].dataset.id == 1){
+			//课程
+			$(".course").css('display','none')
+			//答题
+			$(".The_answer_points").css('display','none')
+			//登录
+			$(".Login_integral").css('display','block')
+			//概览
+			$(".overview").css('display','none')
+			
+		}else if(that[0].dataset.id == 2){
+			//课程
+			$(".course").css('display','none')
+			//答题
+			$(".The_answer_points").css('display','block')
+			//登录
+			$(".Login_integral").css('display','none')
+			//概览
+			$(".overview").css('display','none')
+			
+		}else if(that[0].dataset.id == 3){
+			//课程
+			$(".course").css('display','block')
+			//答题
+			$(".The_answer_points").css('display','none')
+			//登录
+			$(".Login_integral").css('display','none')
+			//概览
+			$(".overview").css('display','none')
+		}else if(that[0].dataset.id == 4){
+			//概览
+			$(".overview").css('display','block')
+			//课程
+			$(".course").css('display','none')
+			//答题
+			$(".The_answer_points").css('display','none')
+			//登录
+			$(".Login_integral").css('display','none')
+		}
+		myIntegral(that[0].dataset.id)
+	})
+	$('.tuichu').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_sp').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_no').click(function(){
+		$('.tuichu_tankuang').css('display','none')
+	})
+	$('.tuichu_tankuang_yes').click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/logOut",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			window.location.href='home.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 我的积分')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	})
+</script>

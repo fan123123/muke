@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/study_history.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<div id="my_favorite">
+    		<div id="mylearninfo"></div>
+    		<div class="my_favorite_main clear">
+    			<div class="inner clear">
+    				<div class="my_favorite_main_le">
+	    				<ul>
+	    					<li><a href="my_favorite.html">我的收藏</a></li>
+	    					<li><a href="my_answer.html">我的答题</a></li>
+	    					<li><a href="my_kaoshi.html" >我的考试</a></li>
+	    					<!--<li>我的订单</li>-->
+	    					<li><a href="my_integral.html">我的积分</a></li>
+	    					<li class="ac">学习历史</li>
+	    					<!--<li>消息通知</li>-->
+	    					<li><a href="personal_setting.html">个人设置</a></li>
+	    				</ul>
+	    				<div class="tuichu">
+	    					安全退出
+	    				</div>
+	    			</div>
+	    			<div class="my_favorite_main_ri">
+	    				<div class="my_favorite_main_ri_top">
+	    					<p>学习历史（近一个月）</p>
+	    					<div class="my_favorite_main_ri_top_jifen">
+	    						清除历史
+	    					</div>
+	    				</div>
+	    				<div class="my_favorite_main_ri_main">
+	    					<div class="newest clear">
+						
+							</div>
+	    				</div>
+	    				<!--没有课程提示-->
+						<div id="no" class="The_answer_points_no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！还没有观看过任何视频</p>
+						</div>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="tuichu_tankuang clear" style="display: none;">
+				<span class="tuichu_tankuang_sp" style="cursor: pointer;">×</span>
+				<p class="tuichu_tankuang_p">确定要退出账号吗，您将无法浏览部分内容。</p>
+				<div class="tuichu_tankuang_no"style="cursor: pointer;">取消</div>
+				<div class="tuichu_tankuang_yes"style="cursor: pointer;">确定</div>
+			</div>
+    	</div>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	 $("#head").load("head.html");
+	 $("#bases").load("base.html");
+	 $("#mylearninfo").load("mylearninfo.html");
+	 //	 学习历史
+	function myHistory(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/myHistory",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			if(res.data==''){
+	 					$('#no').css('display','block');
+		 			}else{
+		 				$('#no').css('display','none');
+		 			}
+//		 			<div class="newest_main" data-id="`+res.data[i].id+`">
+//						<div style="position:relative;">
+//							<div class="newest_time">已播放`+res.data[i].view_node+`</div>
+//							<img class="newest_main_img" src="`+res.data[i].video_img+`"/>
+//						</div>
+//						<div class="newest_main_zhong clear">
+//							<div class="newest_main_zhong_form">`+res.data[i].type+`</div>
+//							<div class="newest_main_zhong_teacher">讲师：`+res.data[i].teacher_name+`</div>
+//						</div>
+//						<div class="newest_main_xia">
+//							<p>`+res.data[i].title+`</p>
+//						</div>
+//					</div>	
+		 			 for(let i=0;i<res.data.length;i++){
+						$(".newest").append(`
+							<div class="newest_main" data-id="`+res.data[i].id+`">
+								<div class="newest_main_ho"></div>
+								<div style="position:relative;">
+									<img class="newest_main_img" src="`+res.data[i].video_img+`"/>
+								</div>
+								<div class="newest_main_zhong clear">
+									<div class="newest_main_zhong_form">`+res.data[i].type+`</div>
+									<div class="newest_main_zhong_teacher">讲师：`+res.data[i].teacher_name+`</div>
+								</div>
+								<div class="newest_main_xia">
+									<p>`+res.data[i].title+`</p>
+								</div>
+							</div>	
+						`)
+						$(".newest_main").click(function(e){
+							window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+//			 				location.replace('detail_page.html?'+e.currentTarget.dataset.id);
+			 			})
+					}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 myHistory();
+	 $(".my_favorite_main_ri_top_jifen").click(function(){
+	 	$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/clearHistory",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			success_pop(res.msg,2000)
+		 			setTimeout(function(){
+		 				window.location.href='study_history.html';
+		 			},2000)
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 })
+	 
+	$('.tuichu').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_sp').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_no').click(function(){
+		$('.tuichu_tankuang').css('display','none')
+	})
+	$('.tuichu_tankuang_yes').click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/logOut",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			window.location.href='home.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	 $.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 学习历史')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+</script>

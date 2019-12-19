@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/detail_page.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<!--答题弹框-->
+    	<div id="answer">
+    		<p class="answer_p">课程问题</p>
+    		<div class="answer_inner">
+    			社会工作者小王接待了甶邻居陪同前来求助的李奶奶，李奶奶说自己的子女都在外地工 作，老伴前几天因脑梗住院治疗。她每天要去医院送饭，昨天在回家途中扭伤脚踝，行走困难。 经过沟通，小王与李奶奶定了需要小王协助解决的具体困难，小王所做的是社会工作者通用过程中()阶段的工作。
+    		</div>
+    		<ul class="answer_answer">
+    			<li data-back = "1" data-id = "1">A. 接案</li>
+    			<li data-back = "1" data-id = "2">B. 接案</li>
+    			<li data-back = "1" data-id = "3">C. 接案</li>
+    			<li data-back = "1" data-id = "4">D. 接案</li>
+    		</ul>
+    		<div class="clear">
+    			<div class="answer_sub">提交答案</div>
+    			<div class="answer_cancel">取消答题</div>
+    		</div>
+    	</div>
+    	<!--回答对错弹框-->
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	 $(".answer_answer li").click(function(){
+// 		for(let i=0;i<$(".answer_answer li").length;i++){
+// 			$(".answer_answer li").eq(i).css('background','rgba(0, 0, 0, 0.05)');
+// 			$(".answer_answer li").eq(i).css('color','#000');
+// 		}
+//		console.log()
+		if($(this).context.dataset.back == 1){
+			$(this).context.dataset.back=2
+			$(this).css('background','#DE2121');
+   			$(this).css('color','#fff');				
+		}else{
+			$(this).css('background','rgba(0, 0, 0, 0.05)');
+   			$(this).css('color','#000');
+			$(this).context.dataset.back=1
+		}
+// 		$(this).css('background','#DE2121');
+// 		$(this).css('color','#fff');
+// 		question_id = $(this)[0].dataset.fid
+// 		answer_id = $(this)[0].dataset.id
+   })
+	$('.answer_sub').click(function(){
+		
+		for(i=0;i<=$('.answer_answer li').length-1;i++){
+			if($('.answer_answer li').eq(i)[0].dataset.back == 2){
+				console.log($('.answer_answer li').eq(i)[0].dataset.id)
+			}
+			
+//			if($('.answer_answer li').eq(i).context.dataset.back == 2){
+//				console.log($('.answer_answer li').eq(i).context.dataset.id)
+//			}
+		}
+	})
+</script>

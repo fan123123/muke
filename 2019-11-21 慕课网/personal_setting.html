@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/personal_setting.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<div id="my_favorite">
+    		<div id="mylearninfo"></div>
+    		<div class="my_favorite_main clear">
+    			<div class="inner clear">
+    				<div class="my_favorite_main_le">
+	    				<ul>
+	    					<li><a href="my_favorite.html">我的收藏</a></li>
+	    					<li><a href="my_answer.html">我的答题</a></li>
+	    					<li><a href="my_kaoshi.html" >我的考试</a></li>
+	    					<!--<li>我的订单</li>-->
+	    					<li><a href="my_integral.html">我的积分</a></li>
+	    					<li><a href="study_history.html">学习历史</a></li>
+	    					<!--<li>消息通知</li>-->
+	    					<li class="ac">个人设置</li>
+	    				</ul>
+	    				<div class="tuichu">
+	    					安全退出
+	    				</div>
+	    			</div>
+	    			<div class="my_favorite_main_ri">
+	    				<div class="my_favorite_main_ri_top">
+	    					<p>个人设置</p>
+	    				</div>
+						<div class="my_intrgral_main_ri_mian">
+							<ul class="clear">
+								<li data-id = "1" class="ac">个人信息</li>
+								<li data-id = "2">绑定信息</li>
+								<li data-id = "3">密码修改</li>
+							</ul>
+	    				</div>
+	    				<script type="text/javascript">
+	    					$('.my_intrgral_main_ri_mian li').click(function(){
+	    						for(let i=0;i<$('.my_intrgral_main_ri_mian li').length;i++){
+	    							$('.my_intrgral_main_ri_mian li').eq(i).removeClass('ac')
+	    						}
+	    						$(this).addClass('ac')
+	    						if($(this)[0].dataset.id==1){
+//	    							个人信息
+									$('.personal_details').css('display','block')							
+									$('.binding_information').css('display','none')							
+									$('.change_password').css('display','none')							
+	    						}else if($(this)[0].dataset.id==2){
+//	    							绑定信息
+									$('.personal_details').css('display','none')							
+									$('.binding_information').css('display','block')							
+									$('.change_password').css('display','none')	
+	    						}else if($(this)[0].dataset.id==3){
+//	    							密码修改.
+									$('.personal_details').css('display','none')							
+									$('.binding_information').css('display','none')							
+									$('.change_password').css('display','block')	
+	    						}
+	    					})
+	    				</script>
+	    				<!--个人信息-->
+	    				<div class="personal_details">
+	    					<div class="head_portrait clear">
+	    						<div class="text">头像：</div>
+	    						<div class="shangchuan" >
+	    							<form id="form1"> 
+	    								<img id="img_id" style="width: 80px;height: 80px;border-radius: 50%;" src="" type="button"  onclick="f.click()" />
+									    <label for="exampleInputEmail1"  style="display:none">头像</label> 
+									    <input value="编辑"  type="button"  onclick="f.click()" style="cursor: pointer;" class="btn_mouseout shangchuan_zi" style="text-align: center;"/ 
+									    <p><input type="file" id="f" name="f" onchange="sc(this);" style="display:none"/></p> 
+									</form> 
+	    						</div>
+	    						<script type="text/javascript">
+	    							
+	    						</script>
+	    					</div>
+	    					<div class="nickname clear">
+	    						<div class="text">昵称：</div>
+								<input type="" name="" id="nickname" value="" placeholder="昵称名称"/>
+								<div class="xianding">限定8个中文字符</div>
+	    					</div>
+	    					<div class="real_name clear">
+	    						<div class="text">真实姓名：</div>
+								<input type="" name="" id="real_name" value="" placeholder=""/>
+	    					</div>
+	    					<div class="identity_card clear">
+	    						<div class="text">身份证号：</div>
+								<input type="" name="" id="identity_card" value="" placeholder=""/>
+	    					</div>
+	    					<div class="province clear">
+	    						<div class="text">省/直辖市：</div>
+	    						<div class="xiala" id="province_code_id">
+						    		<div class="xiala_text" data-val = ""></div>
+						    		<div class="xiala_text_val" style="display: none;"></div>
+						    		<div class="xiala_img">
+						    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+						    		</div>
+						    		<div class="xiala_1">
+						    			<div class="test test-1">
+									        <div class="scrollbar"></div>
+									        <ul class="xiala_ul"></ul>
+										</div>
+						    		</div>
+						    	</div>
+						    	
+	    						<!--<select name="province_code_id" lay-filter="province_code_id" id="province_code_id" lay-search="" lay-verify="select">
+						        	<option value=""></option>
+						        </select>-->
+	    						<div class="text texts">市：</div>
+	    						<div class="xiala" id="city_code_id">
+						    		<div class="xiala_text"></div>
+						    		<div class="xiala_text_val" style="display: none;"></div>
+						    		
+						    		<div class="xiala_img">
+						    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+						    		</div>
+						    		<div class="xiala_1">
+						    			<div class="test test-1">
+									        <div class="scrollbar"></div>
+									        <ul class="xiala_ul"></ul>
+										</div>
+						    		</div>
+						    	</div>
+	    					</div>
+	    					<div class="the_city_proper clear">
+	    						<div class="text">城区：</div>
+	    						<div class="xiala" id="district_code_id">
+						    		<div class="xiala_text"></div>
+						    		<div class="xiala_text_val" style="display: none;"></div>
+						    		
+						    		<div class="xiala_img">
+						    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+						    		</div>
+						    		<div class="xiala_1">
+						    			<div class="test test-1">
+									        <div class="scrollbar"></div>
+									        <ul class="xiala_ul"></ul>
+										</div>
+						    		</div>
+						    	</div>
+	    						<div class="text text1">街道/乡镇：</div>
+	    						<div class="xiala" id="street_code_id">
+						    		<div class="xiala_text"></div>
+						    		<div class="xiala_text_val" style="display: none;"></div>
+						    		
+						    		<div class="xiala_img">
+						    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+						    		</div>
+						    		<div class="xiala_1">
+						    			<div class="test test-1">
+									        <div class="scrollbar"></div>
+									        <ul class="xiala_ul"></ul>
+										</div>
+						    		</div>
+						    	</div>
+	    					</div>
+	    					<div class="politics_status clear">
+	    						<div class="text">政治面目：</div>
+	    						<div class="xiala" id="politics_status">
+						    		<div class="xiala_text" data-val = ""></div>
+						    		<div class="xiala_text_val" style="display: none;"></div>
+						    		<div class="xiala_img">
+						    			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+						    		</div>
+						    		<div class="xiala_1">
+						    			<div class="test test-1">
+									        <div class="scrollbar"></div>
+									        <ul class="xiala_ul"></ul>
+										</div>
+						    		</div>
+						    	</div>
+	    					</div>
+	    					<div class="baocun clear">
+	    						<div class="text"></div>
+	    						<div class="tijiao">
+	    							保存设置
+	    						</div>
+	    					</div>
+	    				</div>
+	    				<script type="text/javascript">
+	    					
+	    				</script>
+	    				<!--绑定信息-->
+	    				<div class="binding_information" style="display: none;">
+	    					<!--<div class="WeChat clear">
+	    						<div class="text">绑定微信：</div>
+	    						<div class="WeChat_anniu">立即绑定微信</div>
+	    						<!--<input type="" name="" id="WeChat_input" value="" placeholder="wechat ID"/>
+	    						<div class="tishi">取消绑定微信</div>-->
+	    						<!--</div>-->
+	    					<div class="cellphone clear">
+	    						<div class="text">绑定手机号：</div>
+	    						<div class="cellphone_anniu weibangding">立即绑定手机</div>
+	    						
+	    						<input class="yibangding" type="" name="" id="cellphone_input" value="" placeholder="138XXXXXXXXXX"/>
+	    						<div class="genghuan yibangding">更换绑定手机</div>
+	    					</div>
+	    				</div>
+	    				
+	    				<!--密码修改-->
+	    				<div class="change_password" style="display: none;">
+	    					<!--修改方式-->
+	    					<div class="xiugai" >
+	    						<div class="change_password_top clear">
+		    						<div class="change_password_wai">
+		    							<div class="change_password_nei"></div>
+		    							<div class="change_password_tit">
+		    								选择修改方式
+		    							</div>
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    					</div>
+		    					<div class="change_password_zhong">
+		    						通过原密码修改 或 <span>通过手机修改密码</span>
+		    					</div>
+		    					<div class="change_password_xia clear">
+		    						<div class="change_password_xia_le" style="cursor: pointer;">通过原密码修改</div>
+		    						<div class="change_password_xia_ri" style="cursor: pointer;">通过绑定手机号修改</div>
+		    						<!--<div class="change_password_xia_ri1">通过绑定手机号修改</div>-->
+		    					</div>
+	    					</div>
+	    					<!--确认原密码-->
+	    					<div class="yuanmima"   style="display: none;">
+	    						<div class="change_password_top clear">
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    							<div class="change_password_nei"></div>
+		    							<div class="change_password_tit">
+		    								确认原密码
+		    							</div>
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    					</div>
+		    					<div class="change_password_zhong">
+		    						请输入原密码
+		    					</div>
+		    					<div class="change_password_xia clear">
+		    						<input type="password" name="" id="original_password" value="" />
+		    						<div class="change_password_xia_tijiao clear">
+		    							<div class="change_password_xia_tijiao_le" id="yuanmima_s">上一步</div>
+		    							<div class="change_password_xia_tijiao_ri" id="yuanmima_x" style="background: rgba(222, 33, 33, 0.4)">下一步</div>
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<!--输入手机号-->
+	    					<div class="shoujihao" style="display: none;" id="shoujihao_xiugaimima">
+	    						<div class="change_password_top clear" >
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    							<div class="change_password_nei"></div>
+		    							<div class="change_password_tit">
+		    								输入手机号
+		    							</div>
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    					</div>
+		    					<div class="change_password_zhong">
+		    						请输入手机号以及验证码
+		    					</div>
+		    					<div class="change_password_xia clear">
+		    						<div class="change_password_xia_input clear">
+		    							<div class="change_password_xia_input_le">
+		    								原绑定手机号：
+		    							</div>
+		    							<input type="" name="" id="change_password_xia_input_riput_ri" value="" />
+		    						</div>
+		    						<div class="shoujihao_yanzheng_raw clear">
+						    			<div class="shoujihao_yanzheng_raw_le">验证码：</div>
+						    			<input type="" name="" id="shoujihao_yanzheng_raw_ri" value="" />
+						    			<div class="shoujihao_yanzheng_raw_but">获取验证码</div>
+						    		</div>
+		    						<div class="change_password_xia_tijiao clear" style="width: 380px;margin-left: 320px;">
+		    							<div class="change_password_xia_tijiao_le" style="margin-right: 158px;" id="shoujihao_xiugaimima_s">上一步</div>
+		    							<div class="change_password_xia_tijiao_ri" id="shoujihao_xiugaimima_x" style="
+background: rgba(222, 33, 33, 0.4);">下一步</div>
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<!--修改密码-->
+	    					<div class="shoujihao" style="display: none;" id="shurumima">
+	    						<div class="change_password_top clear">
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    							<div class="change_password_nei"></div>
+		    							<div class="change_password_tit">
+		    								修改密码
+		    							</div>
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    					</div>
+		    					<div class="change_password_zhong">
+		    						请输入新密码
+		    					</div>
+		    					
+		    					<div class="change_password_xia clear">
+		    						<div class="change_password_xia_input clear" style="margin-left: 237px;">
+		    							<div class="change_password_xia_input_le" style="margin-right: 37px;width: 64px;">
+		    								新密码：
+		    							</div>
+		    							<input type="password" name="" id="xin_password_xia_input_riput_ri" value="" />
+		    						</div>
+		    						<div class="shoujihao_yanzheng_raw clear">
+						    			<div class="shoujihao_yanzheng_raw_le" style="width: 96px;margin-right: 5px;margin-left: 237px;">重复新密码：</div>
+						    			<input type="password" name="" id="cf_yanzheng_raw_ri" value="" />
+						    		</div>
+		    						<div class="change_password_xia_tijiao clear" style="width: 279px;margin-left: 338px;">
+		    							<div class="change_password_xia_tijiao_le" id="shurumima_s" style="margin-right: 57px; ">上一步</div>
+		    							<div class="change_password_xia_tijiao_ri" id="shurumima_x" style="background: rgba(222, 33, 33, 0.4);">下一步</div>
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<!--输入新密码-->
+	    					<!--修改完成-->
+	    					<div class="wancheng" style="display: none;">
+	    						<div class="change_password_top clear">
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    						</div>
+		    						<div class="xian"></div>
+		    						<div class="change_password_wai">
+		    							<div class="change_password_nei"></div>
+		    							<div class="change_password_tit">
+		    								修改完成
+		    							</div>
+		    						</div>
+		    					</div>
+		    					<img class="wancheng_img" src="img/xiugaigenggong.png"/>
+		    					<div class="wancheng_tit">密码修改成功！</div>
+		    					<div class="wancheng_but">完成</div>
+	    					</div>
+	    					<script type="text/javascript">
+	    						$(".change_password_zhong span").click(function(){
+	    							$("#shoujihao_xiugaimima").css('display','block')
+	    							$(".xiugai").css('display','none')
+	    						})
+	    						$(".change_password_xia_ri").click(function(){
+	    							$("#shoujihao_xiugaimima").css('display','block')
+	    							$(".xiugai").css('display','none')
+	    						})
+	    						$("#shoujihao_xiugaimima_s").click(function(){
+	    							$("#shoujihao_xiugaimima").css('display','none')
+	    							$(".xiugai").css('display','block')
+	    						})
+	    						//修改密码获取验证码 检测是否输入
+			    				var change_password_xia_input_riput_ri = ''; 
+			    				var shoujihao_yanzheng_raw_ri = ''; 
+			    				 $("#change_password_xia_input_riput_ri").bind('input propertychange', function () {
+						            change_password_xia_input_riput_ri = $("#change_password_xia_input_riput_ri").val();
+						            if(change_password_xia_input_riput_ri!=''&&shoujihao_yanzheng_raw_ri!=''){
+					        			$("#shoujihao_xiugaimima_x").css('background','#DE2121')
+							        }else{
+						        		$("#shoujihao_xiugaimima_x").css('background','rgba(222, 33, 33, 0.4)')
+							        }
+						        });
+			    				 $("#shoujihao_yanzheng_raw_ri").bind('input propertychange', function () {
+						            shoujihao_yanzheng_raw_ri = $("#shoujihao_yanzheng_raw_ri").val();
+						             if(change_password_xia_input_riput_ri!=''&&shoujihao_yanzheng_raw_ri!=''){
+					        			$("#shoujihao_xiugaimima_x").css('background','#DE2121')
+							        }else{
+						        		$("#shoujihao_xiugaimima_x").css('background','rgba(222, 33, 33, 0.4)')
+							        }
+						        });
+	    						//修改密码获取验证码
+			    				$(".shoujihao_yanzheng_raw_but").click(function(){
+						 			$(".register_tishi_shouji").html('')
+						 			var that = $(this)
+									if(that.html()=='获取验证码'){
+										var num = 60;
+										var jishi = setInterval(function(){
+								    		num--;
+								    		if(num==0){
+								    			$(".shoujihao_yanzheng_raw_but").html('获取验证码');
+								    			$(".shoujihao_yanzheng_raw_but").css("background-color","#18A0FB")
+								    			clearInterval(jishi);
+												num = 60;
+								    		}else{
+								    			$(".shoujihao_yanzheng_raw_but").html(num+'s后重新重发')
+								    			$(".shoujihao_yanzheng_raw_but").css("background-color","rgba(24, 160, 251, 0.4)")
+								    		}
+								    	},1000)
+										$.ajax({
+										 	type:'POST',
+										 	url:"https://api.htlocalservice.com/muke/public/api/Users/sendMsg",
+										 	dataType:"json",
+										 	async:true,
+										 	traditional:true,
+										 	data:{
+		 										token:localStorage.lastname,//登录令牌
+										 		mobile:$("#change_password_xia_input_riput_ri").val(),//手机号
+										 	},
+										 	success:function(res){
+										 		if(res.code == 200){
+										 			success_pop(res.msg,2000)
+										 		}else if(res.code == -1){
+										 			window.location.href='login.html';
+										 			$('.detection_yes').css('display','none')
+													$('.detection_no').css('display','block')
+										 		}else if(res.code==0){
+										 			error_pop(res.msg,2000)
+										 			$(".shoujihao_yanzheng_raw_but").html('获取验证码');
+								    				$(".shoujihao_yanzheng_raw_but").css("background-color","#18A0FB")
+								    				clearInterval(jishi);
+													num = 60;
+										 		}else if(res.code==-2){
+										 			error_pop(res.msg,2000)
+										 			$(".shoujihao_yanzheng_raw_but").html('获取验证码');
+								    				$(".shoujihao_yanzheng_raw_but").css("background-color","#18A0FB")
+								    				clearInterval(jishi);
+													num = 60;
+										 		}else if(res.code==-20){
+										 			window.location.href='login.html';
+										 		}else if(res.code==-30){
+										 			window.location.href='xinxiwanshan.html';
+										 		}else{
+										 			$(".shoujihao_yanzheng_raw_but").html('获取验证码');
+										 		}
+										 	},
+										 	complete:function(res){
+										 		
+										 	},
+										 	error:function(res){
+									
+										 	}
+										 })
+									}
+			    				})
+			    				$("#shoujihao_xiugaimima_x").click(function(){
+			    					$.ajax({
+									 	type:'POST',
+									 	url:"https://api.htlocalservice.com/muke/public/api/Users/checkCode",
+									 	dataType:"json",
+									 	async:true,
+									 	traditional:true,
+									 	data:{
+		 									token:localStorage.lastname,//登录令牌
+									 		mobile:$("#change_password_xia_input_riput_ri").val(),//手机号
+									 		code:$("#shoujihao_yanzheng_raw_ri").val()//短信验证码
+									 	},
+									 	success:function(res){
+								 			if(res.code==200){
+									 			$("#shurumima").css('display','block')
+									 			$("#shoujihao_xiugaimima").css('display','none')
+									 		}else if(res.code == -1){
+									 			window.location.href='login.html';
+									 			$('.detection_yes').css('display','none')
+												$('.detection_no').css('display','block')
+									 		}else if(res.code==-20){
+									 			window.location.href='login.html';
+									 		}else if(res.code==-30){
+									 			window.location.href='xinxiwanshan.html';
+									 		}
+									 	},
+									 	complete:function(res){
+									 		
+									 	},
+									 	error:function(res){
+								
+									 	}
+									 })
+			    				})
+			    				//修改密码
+			    				var xin_password_xia_input_riput_ri = ''; 
+			    				var cf_yanzheng_raw_ri = ''; 
+			    				 $("#xin_password_xia_input_riput_ri").bind('input propertychange', function () {
+						            xin_password_xia_input_riput_ri = $("#xin_password_xia_input_riput_ri").val();
+						            if(xin_password_xia_input_riput_ri!=''&&cf_yanzheng_raw_ri!=''){
+					        			$("#shurumima_x").css('background','#DE2121')
+							        }else{
+						        		$("#shurumima_x").css('background','rgba(222, 33, 33, 0.4)')
+							        }
+						        });
+			    				 $("#cf_yanzheng_raw_ri").bind('input propertychange', function () {
+						            cf_yanzheng_raw_ri = $("#cf_yanzheng_raw_ri").val();
+						             if(xin_password_xia_input_riput_ri!=''&&cf_yanzheng_raw_ri!=''){
+					        			$("#shurumima_x").css('background','#DE2121')
+							        }else{
+						        		$("#shurumima_x").css('background','rgba(222, 33, 33, 0.4)')
+							        }
+						        });
+						        $("#shurumima_x").click(function(){
+		    						$.ajax({
+									 	type:'POST',
+									 	url:"https://api.htlocalservice.com/muke/public/api/Users/setPass",
+									 	dataType:"json",
+									 	async:true,
+									 	traditional:true,
+									 	data:{
+		 									token:localStorage.lastname,//登录令牌
+									 		password:$("#xin_password_xia_input_riput_ri").val(),//手机号
+									 		repassword:$("#cf_yanzheng_raw_ri").val()//短信验证码
+									 	},
+									 	success:function(res){
+									 		console.log(res)
+								 			if(res.code==200){
+									 			$(".wancheng").css('display','block')
+									 			$("#shurumima").css('display','none')
+									 		}else if(res.code == -1){
+									 			window.location.href='login.html';
+									 			$('.detection_yes').css('display','none')
+												$('.detection_no').css('display','block')
+									 		}else if(res.code==-20){
+									 			window.location.href='login.html';
+									 		}else if(res.code==-30){
+									 			window.location.href='xinxiwanshan.html';
+									 		}
+									 	},
+									 	complete:function(res){
+									 		
+									 	},
+									 	error:function(res){
+								
+									 	}
+									})
+			    				})
+			    				$("#shurumima_s").click(function(){
+			    					$("#shurumima").css('display','none')
+						 			$("#shoujihao_xiugaimima").css('display','block')
+			    				})
+								//原密码修改、
+								$('.change_password_xia_le').click(function(){
+									$('.yuanmima').css('display','block')
+									$('.xiugai').css('display','none')
+								})
+			    				var original_password = ''; 
+			    				 $("#original_password").bind('input propertychange', function () {
+						            original_password = $("#original_password").val();
+						            if(original_password!=''){
+					        			$("#yuanmima_x").css('background','#DE2121')
+							        }else{
+						        		$("#yuanmima_x").css('background','rgba(222, 33, 33, 0.4)')
+							        }
+						        });
+//								//源密码上一步
+								$('#yuanmima_s').click(function(){
+									$('.yuanmima').css('display','none')
+									$('.xiugai').css('display','block')
+								})
+								//源密码下一步
+								$('#yuanmima_x').click(function(){
+									$.ajax({
+									 	type:'POST',
+									 	url:"https://api.htlocalservice.com/muke/public/api/Users/checkOldPass",
+									 	dataType:"json",
+									 	async:true,
+									 	traditional:true,
+									 	data:{
+		 									token:localStorage.lastname,//登录令牌
+									 		password:$("#original_password").val(),//手机号
+									 	},
+									 	success:function(res){
+								 			if(res.code==200){
+									 			$('.yuanmima').css('display','none')
+												$('#shurumima').css('display','block')
+									 		}else if(res.code == -1){
+									 			window.location.href='login.html';
+									 			$('.detection_yes').css('display','none')
+												$('.detection_no').css('display','block')
+									 		}else if(res.code==-20){
+									 			window.location.href='login.html';
+									 		}else if(res.code==-30){
+									 			window.location.href='xinxiwanshan.html';
+									 		}
+									 	},
+									 	complete:function(res){
+									 		
+									 	},
+									 	error:function(res){
+								
+									 	}
+									})
+								})
+								//完成修改
+								$(".wancheng_but").click(function(){
+									$(".wancheng").css('display','none')
+						 			$(".xiugai").css('display','block')
+								})
+	    					</script>
+	    					
+	    				</div>
+	    			</div>
+    			</div>
+    		</div>
+    	</div>
+    	<!--更换手机弹框-->
+    	<div class="Mobile_phone" id="Mobile_phone" style="display: none;">
+    		<div class="Mobile_phone_top">
+    			更换绑定手机号
+    			<span>×</span>
+    		</div>
+    		<div class="Mobile_phone_tishi">若要更换绑定手下，请先输入先绑定手机号码</div>
+    		<div class="Mobile_phone_raw clear">
+    			<div class="Mobile_phone_raw_le">原绑定手机号：</div>
+    			<input type="" name="" id="Mobile_phone_raw_ri" value="" />
+    		</div>
+    		<div class="Mobile_phone_raw_tishi clear" id="Mobile_phone_sp" style="height: 32px;">
+    			<!--手机号输入位数有误！-->
+    		</div>
+    		
+    		<div class="Mobile_yanzheng_raw clear">
+    			<div class="Mobile_yanzheng_raw_le">验证码：</div>
+    			<input type="" name="" id="Mobile_yanzheng_raw_ri" value="" />
+    			<div class="Mobile_yanzheng_raw_but" id="Mobile_phone_huoqu">获取验证码</div>
+    		</div>
+    		<div class="Mobile_phone_raw_tishi clear" id="Mobile_phone_xp" style="height: 32px;">
+    			<!--验证码输入误！-->
+    		</div>
+    		<div class="remove_binding" id="jiechu">解除绑定</div>
+    	</div>
+    	<script type="text/javascript">
+    		
+    	</script>
+    	<!--新手机号绑定-->
+    	<div class="Mobile_phone" id="xin_Mobile_phone" style="display: none;">
+    		<div class="Mobile_phone_top">
+    			更换绑定手机号
+    			<span>×</span>
+    		</div>
+    		<div class="Mobile_phone_tishi">请输入新的手机号进行绑定！</div>
+    		<div class="Mobile_phone_raw clear">
+    			<div class="Mobile_phone_raw_le">新绑定手机号：</div>
+    			<input type="" name="" id="xin_Mobile_phone_mobile" value="" />
+    		</div>
+    		<div class="Mobile_phone_raw_tishi clear" id="xin_Mobile_phone_sp" style="height: 32px;">
+    			<!--手机号输入位数有误！-->
+    		</div>
+    		<div class="Mobile_yanzheng_raw clear">
+    			<div class="Mobile_yanzheng_raw_le">验证码：</div>
+    			<input type="" name="" id="xin_Mobile_phone_code" value="" />
+    			<div class="Mobile_yanzheng_raw_but" id="xinhuoqu">获取验证码</div>
+    		</div>
+    		<div class="Mobile_phone_raw_tishi clear" id="xin_Mobile_phone_xp" style="height: 32px;">
+    			<!--验证码输入误！-->
+    		</div>
+    		<div class="remove_binding" id="xinbangding">绑定手机号</div>
+    	</div>
+    	<div class="tuichu_tankuang clear" style="display: none;">
+			<span class="tuichu_tankuang_sp" style="cursor: pointer;">×</span>
+			<p class="tuichu_tankuang_p">确定要退出账号吗，您将无法浏览部分内容。</p>
+			<div class="tuichu_tankuang_no"style="cursor: pointer;">取消</div>
+			<div class="tuichu_tankuang_yes"style="cursor: pointer;">确定</div>
+		</div>
+    	<script type="text/javascript">
+    		var xin_Mobile_phone_mobile = ''; 
+			var xin_Mobile_phone_code = ''; 
+			 $("#xin_Mobile_phone_mobile").bind('input propertychange', function () {
+	            xin_Mobile_phone_mobile = $("#xin_Mobile_phone_mobile").val();
+	            if(xin_Mobile_phone_mobile!=''&&xin_Mobile_phone_code!=''){
+	        		$("#xinbangding").css('background','#DE2121')
+		        }else{
+	        		$("#xinbangding").css('background',' rgba(222, 33, 33, 0.2)')
+		        }
+	        });
+			 $("#xin_Mobile_phone_code").bind('input propertychange', function () {
+	            xin_Mobile_phone_code = $("#xin_Mobile_phone_code").val();
+	            if(xin_Mobile_phone_mobile!=''&&xin_Mobile_phone_code!=''){
+        			$("#xinbangding").css('background','#DE2121')
+		        }else{
+	        		$("#xinbangding").css('background',' rgba(222, 33, 33, 0.2)')
+		        }
+	        });
+	         //获取验证码
+			$("#xinhuoqu").click(function(){
+	 			$("#xin_Mobile_phone_sp").html('')
+	 			var that = $(this)
+				if(that.html()=='获取验证码'){
+					var num = 60;
+					var jishi = setInterval(function(){
+			    		num--;
+			    		if(num==0){
+			    			$("#xinhuoqu").html('获取验证码');
+			    			$("#xinhuoqu").css("background-color","#18A0FB")
+			    			clearInterval(jishi);
+							num = 60;
+			    		}else{
+			    			$("#xinhuoqu").html(num+'s后重新重发')
+			    			$("#xinhuoqu").css("background-color","rgba(24, 160, 251, 0.4)")
+			    		}
+			    	},1000)
+					$.ajax({
+					 	type:'POST',
+					 	url:"https://api.htlocalservice.com/muke/public/api/Users/newmSendMsg",
+					 	dataType:"json",
+					 	async:true,
+					 	traditional:true,
+					 	data:{
+				 			token:localStorage.lastname,//登录令牌
+					 		mobile:$("#xin_Mobile_phone_mobile").val(),//手机号
+					 	},
+					 	success:function(res){
+					 		if(res.code==200){
+					 			success_pop(res.msg,2000)
+					 			$("#xin_Mobile_phone_sp").html(res.msg);
+					 			setTimeout(function(){
+					 				$("#xin_Mobile_phone_sp").html('')
+					 			},2000)
+					 		}else if(res.code == -1){
+					 			window.location.href='login.html';
+					 			$('.detection_yes').css('display','none')
+								$('.detection_no').css('display','block')
+					 		}else if(res.code==-20){
+					 			window.location.href='login.html';
+					 		}else if(res.code==-30){
+					 			window.location.href='xinxiwanshan.html';
+					 		}else{
+					 			$("#xinhuoqu").html('获取验证码');
+					 			$("#xin_Mobile_phone_sp").html(res.msg);
+					 			$("#xinhuoqu").html('获取验证码');
+			    				$("#xinhuoqu").css("background-color","#18A0FB")
+			    				clearInterval(jishi);
+								num = 60;
+					 			setTimeout(function(){
+					 				$("#xin_Mobile_phone_sp").html('')
+					 			},2000)
+					 		}
+					 	},
+					 	complete:function(res){
+					 		
+					 	},
+					 	error:function(res){
+				
+					 	}
+					 })
+				}
+				
+			})
+	        //解除绑定
+			$("#xinbangding").click(function(){
+	 			$("#xin_Mobile_phone_sp").html('')
+	 			$("#xin_Mobile_phone_xp").html('')
+				$.ajax({
+				 	type:'POST',
+				 	url:"https://api.htlocalservice.com/muke/public/api/Users/bindingMobile",
+				 	dataType:"json",
+				 	async:true,
+				 	traditional:true,
+				 	data:{
+				 		token:localStorage.lastname,//登录令牌
+				 		mobile:$("#xin_Mobile_phone_mobile").val(),//密码
+				 		code:$("#xin_Mobile_phone_code").val(),//重复密码
+				 	},
+				 	success:function(res){
+				 		if(res.code==200){
+				 			$("#xin_Mobile_phone").css('display','none')
+				 			$("#Mobile_phone").css('display','none')
+				 			gerenxinxi()
+				 		}else if(res.code==0||res.code==-2){
+				 			$("#xin_Mobile_phone_sp").html(res.msg)
+				 			setTimeout(function(){
+				 				$("#xin_Mobile_phone_sp").html('')
+				 			},2000)
+				 		}else if(res.code==-3){
+				 			$("#xin_Mobile_phone_xp").html(res.msg)
+				 			setTimeout(function(){
+				 				$("#xin_Mobile_phone_xp").html('')
+				 			},2000)
+				 		}else if(res.code == -1){
+				 			window.location.href='login.html';
+				 			$('.detection_yes').css('display','none')
+							$('.detection_no').css('display','block')
+				 		}else if(res.code==-20){
+				 			window.location.href='login.html';
+				 		}else if(res.code==-30){
+				 			window.location.href='xinxiwanshan.html';
+				 		}
+				 	},
+				 	complete:function(res){
+				 		
+				 	},
+				 	error:function(res){
+			
+				 	}
+				 })
+			})
+    	</script>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	 $("#head").load("head.html");
+	 $("#bases").load("base.html");
+	 $("#mylearninfo").load("mylearninfo.html");
+	 let avatar = ''
+	 //头像上传
+	 function sc(){
+	    var animateimg = $("#f").val(); //获取上传的图片名 带// 
+	    var imgarr=animateimg.split('\\'); //分割 
+	    var myimg=imgarr[imgarr.length-1]; //去掉 // 获取图片名 
+	    var houzui = myimg.lastIndexOf('.'); //获取 . 出现的位置 
+	    var ext = myimg.substring(houzui, myimg.length).toUpperCase(); //切割 . 获取文件后缀 
+	    var file = $('#f').get(0).files[0]; //获取上传的文件 
+	    var fileSize = file.size;      //获取上传的文件大小 
+	    var maxSize = 1048576;       //最大1MB 
+//	    if(ext !='.PNG' && ext !='.GIF' && ext !='.JPG' && ext !='.JPEG' && ext !='.BMP'){ 
+//	        console.log('文件类型错误,请上传图片类型')
+//	        error_pop('文件类型错误,请上传图片类型',2000)
+//	        return false; 
+//  	}else if(parseInt(fileSize) >= parseInt(maxSize)){ 
+//	    	console.log('上传的文件不能超过1MB')
+//	    	error_pop('上传的文件不能超过1MB',2000)
+//	    	setTimeout(function(){
+//	    		animateimg=''
+//	    	},2000)
+//	   		return false; 
+//	    }else{  
+    	var data = new FormData($('#form1')[0]);  
+    	console.log(data)
+    	$.ajax({  
+        	url: "https://api.htlocalservice.com/muke/public/api/Index/upFiles",  
+        	type: 'POST',  
+        	data: data,
+      		dataType: 'JSON',  
+      		cache: false,  
+      		processData: false,  
+      		contentType: false 
+    		}).done(function(res){  
+    			console.log(res)
+    			if(res.code==200){
+    				success_pop(res.msg,2000)
+    				$("#img_id").attr('src',res.url);
+    				avatar = res.url
+    			}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 			$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}else{
+		 			error_pop(res.msg,2000)
+		 		}
+   		    });  
+ 		   return false; 
+//	    }  
+    } 
+	//获取城市
+	function chengshi(){
+		$.ajax({
+	    	type:'POST',
+	        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+	        data:{
+		 		token:localStorage.lastname,//登录令牌
+	        },
+	        dataType:"json", 
+	        success:function (res) {
+	        	for(let i=0;i<res.data.length;i++){
+	        		$("#province_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+	        	}
+        		$("#province_code_id li").click(function(e){
+					$("#province_code_id .xiala_text").html($(this)[0].outerText)
+					$("#province_code_id .xiala_text_val").html($(this)[0].dataset.value)
+					$.ajax({
+				    	type:'POST',
+				        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+				        data:{
+				        	parent_code_id:$(this)[0].dataset.value,
+					 		token:localStorage.lastname,//登录令牌
+				        },
+				        dataType:"json", 
+				        success:function (res) {
+			 				$("#city_code_id .xiala_text").html('请选择')
+			        		$("#city_code_id .xiala_ul").html('')
+				        	for(let i=0;i<res.data.length;i++){
+				        		$("#city_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+				        	}
+				        	$("#city_code_id li").click(function(e){
+								$("#city_code_id .xiala_text").html($(this)[0].outerText)
+								$("#city_code_id .xiala_text_val").html($(this)[0].dataset.value)
+								
+								$.ajax({
+							    	type:'POST',
+							        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+							        data:{
+							        	parent_code_id:$(this)[0].dataset.value,
+								 		token:localStorage.lastname,//登录令牌
+							        },
+							        dataType:"json", 
+							        success:function (res) {
+						 				$("#district_code_id .xiala_text").html('请选择')
+						        		console.log(res)
+						        		$("#district_code_id .xiala_ul").html('')
+							        	for(let i=0;i<res.data.length;i++){
+							        		$("#district_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+							        	}
+							        	$("#district_code_id li").click(function(e){
+											$("#district_code_id .xiala_text").html($(this)[0].outerText)
+											$("#district_code_id .xiala_text_val").html($(this)[0].dataset.value)
+											$.ajax({
+										    	type:'POST',
+										        url: 'https://api.htlocalservice.com/muke/public/api/Position/index',
+										        data:{
+										        	parent_code_id:$(this)[0].dataset.value,
+											 		token:localStorage.lastname,//登录令牌
+										        },
+										        dataType:"json", 
+										        success:function (res) {
+									 				$("#street_code_id .xiala_text").html('请选择')
+									        		$("#street_code_id .xiala_ul").html('')
+										        	for(let i=0;i<res.data.length;i++){
+										        		$("#street_code_id .xiala_ul").append('<li data-value='+res.data[i].code_id+'>'+res.data[i].position_name+'</li>')
+										        	}
+										        	$("#street_code_id li").click(function(e){
+														$("#street_code_id .xiala_text").html($(this)[0].outerText)
+														$("#street_code_id .xiala_text_val").html($(this)[0].dataset.value)
+													})
+										        }
+										    });
+										})
+							        }
+							    });
+							})
+				        }
+				    });
+				})
+	        }
+	    });
+	}
+	let province_code_id_num = 0;
+	let city_code_id_num = 0;
+	let district_code_id_num = 0;
+	let street_code_id_num = 0;
+	$('#province_code_id').click(function(){
+		province_code_id_num++;
+		if(province_code_id_num%2==1){
+			$("#province_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+</svg>
+			`)
+			
+
+			$("#province_code_id .xiala_1").css('display','block')
+		}else{
+			$("#province_code_id .xiala_1").css('display','none')
+			$("#province_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+			`)
+		}
+		
+		//市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		
+		//城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+	})
+//		市
+	$('#city_code_id').click(function(){
+		city_code_id_num++;
+		if(city_code_id_num%2==1){
+			$("#city_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+				</svg>
+
+			`)
+			$("#city_code_id .xiala_1").css('display','block')
+		}else{
+			$("#city_code_id .xiala_1").css('display','none')
+			$("#city_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+			`)
+		}
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		//城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+
+	})
+
+	//	城区
+	$('#district_code_id').click(function(){
+		district_code_id_num++;
+		if(district_code_id_num%2==1){
+			$("#district_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+				</svg>
+
+			`)
+			$("#district_code_id .xiala_1").css('display','block')
+		}else{
+			$("#district_code_id .xiala_1").css('display','none')
+			$("#district_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+			`)
+		}
+		
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///街道/乡镇
+		$("#street_code_id .xiala_1").css('display','none')
+		street_code_id_num = 0;
+		$("#street_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+	})
+	//街道/乡镇
+	$('#street_code_id').click(function(){
+		street_code_id_num++;
+		if(street_code_id_num%2==1){
+			$("#street_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+				</svg>
+
+			`)
+			$("#street_code_id .xiala_1").css('display','block')
+		}else{
+			$("#street_code_id .xiala_1").css('display','none')
+			$("#street_code_id .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+			`)
+		}
+		//省/直辖市
+		$("#province_code_id .xiala_1").css('display','none')
+		province_code_id_num = 0;
+		$("#province_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///市
+		$("#city_code_id .xiala_1").css('display','none')
+		city_code_id_num = 0;
+		$("#city_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+		///城区
+		$("#district_code_id .xiala_1").css('display','none')
+		district_code_id_num = 0;
+		$("#district_code_id .xiala_img").html(`
+			<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+</svg>
+
+		`)
+	})
+	
+
+	//政治面貌
+	function mainmao(){
+		$.ajax({
+	    	type:'POST',
+	        url: 'https://api.htlocalservice.com/muke/public/api/Politicsstatus/index',
+	        data:{
+		 		token:localStorage.lastname,//登录令牌
+	        },
+	        dataType:"json", 
+	        success:function (res) {
+	        	$("#politics_status .xiala_ul").html('')
+	        	for(let i=0;i<res.data.length;i++){
+	        		$("#politics_status .xiala_ul").append('<li data-value='+res.data[i].id+'>'+res.data[i].name+'</li>')
+	        	}
+	        	$("#politics_status li").click(function(e){
+					$("#politics_status .xiala_text").html($(this)[0].outerText)
+					$("#politics_status .xiala_text_val").html($(this)[0].dataset.value)
+				})
+	        }
+	    });
+	}
+	//街道/乡镇
+	let politics_status_num = 0; 
+	$('#politics_status').click(function(){
+		politics_status_num++;
+		if(politics_status_num%2==1){
+			$("#politics_status .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 3L13.1962 12L2.80385 12L8 3Z" fill="black" fill-opacity="0.2"/>
+				</svg>
+
+			`)
+			$("#politics_status .xiala_1").css('display','block')
+		}else{
+			$("#politics_status .xiala_1").css('display','none')
+			$("#politics_status .xiala_img").html(`
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 13L2.80385 4L13.1962 4L8 13Z" fill="black" fill-opacity="0.2"/>
+				</svg>
+
+			`)
+		}
+	})
+	//关闭更换手机号弹框
+	$("#Mobile_phone span").click(function(){
+		$("#Mobile_phone").css('display','none')
+	})
+	//更换手机号点击事件
+	$(".genghuan").click(function(){
+		$("#Mobile_phone").css('display','block')
+//		$.ajax({
+//	    	type:'POST',
+//	        url: 'https://api.htlocalservice.com/muke/public/api/Politicsstatus/index',
+//	        data:{
+//		 		token:localStorage.lastname,//登录令牌
+//	        },
+//	        dataType:"json", 
+//	        success:function (res) {
+//	        	for(let i=0;i<res.data.length;i++){
+//	        		$("#politics_status").append('<option value='+res.data[i].id+'>'+res.data[i].name+'</option>')
+//	        	}
+//	        }
+//	    });
+	})
+	$('.Mobile_phone_top span').click(function(){
+		$('#xin_Mobile_phone').css("display",'none')
+	})
+	//获取个人信息
+	function gerenxinxi(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/info",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.msg.mobile!=''){
+		 			$(".weibangding").css('display','none')
+		 			$(".yibangding").css('display','block')
+		 			$("#cellphone_input").val(res.msg.mobile)
+		 		}else{
+		 			$(".weibangding").css('display','block')
+		 			$(".yibangding").css('display','none')
+		 		}
+		 		if(res.code==200){
+			 		$('#nickname').val(res.msg.nickname)
+			 		$('#real_name').val(res.msg.truename)
+			 		$('#identity_card').val(res.msg.id_card)
+			 		$("#province_code_id .xiala_text").html(res.msg.province)
+					$("#province_code_id .xiala_text_val").html(res.msg.province_code_id)
+					
+			 		$("#city_code_id .xiala_text").html(res.msg.city)
+					$("#city_code_id .xiala_text_val").html(res.msg.city_code_id)
+			 		$("#district_code_id .xiala_text").html(res.msg.district)
+					$("#district_code_id .xiala_text_val").html(res.msg.district_code_id)
+			 		$("#street_code_id .xiala_text").html(res.msg.street)
+					$("#street_code_id .xiala_text_val").html(res.msg.street_code_id)
+			 		let politics_status_1 = res.msg.politics_status
+			 		$.ajax({
+				    	type:'POST',
+				        url: 'https://api.htlocalservice.com/muke/public/api/Politicsstatus/index',
+				        data:{
+		 					token:localStorage.lastname,//登录令牌
+				        },
+				        dataType:"json", 
+				        success:function (res) {
+				        	console.log(localStorage.lastname)
+				        	$("#politics_status .xiala_text").html(res.data[politics_status_1-1].name)
+							$("#politics_status .xiala_text_val").html(res.data[politics_status_1-1].id)
+			        		$("#politics_status .xiala_ul").html('')
+				        	for(let i=0;i<res.data.length;i++){
+					        		$("#politics_status .xiala_ul").append('<li data-value='+res.data[i].id+'>'+res.data[i].name+'</li>')
+					        	}
+				        	$("#politics_status li").click(function(e){
+								$("#politics_status .xiala_text").html($(this)[0].outerText)
+								$("#politics_status .xiala_text_val").html($(this)[0].dataset.value)
+							})
+				        }
+				    });
+			 		 chengshi();
+			 		 mainmao();
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+	gerenxinxi()
+	function touxiang(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/head_img",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			avatar = res.avatar;
+		 			$("#img_id").attr("src",res.avatar)
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 			$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+	touxiang()
+	$(".tijiao").click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/completeInfo",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 		avatar:avatar,//头像URL
+		 		nickname:$('#nickname').val(),//昵称
+		 		truename:$('#real_name').val(),//真实姓名
+		 		id_card:$('#identity_card').val(),//身份证号
+		 		province_code_id:$("#province_code_id .xiala_text_val").html(),//省份/直辖市地区编码
+		 		city_code_id:$("#city_code_id .xiala_text_val").html(),//市区地区编码
+		 		district_code_id:$("#district_code_id .xiala_text_val").html(),//县/区地区编码
+		 		street_code_id:$("#street_code_id .xiala_text_val").html(),//街道/乡镇地区编码
+		 		politics_status:$("#politics_status .xiala_text_val").html(),//政治面貌id
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+//		 			location.replace('personal_setting.html');
+					window.location.href='personal_setting.html';
+		 			
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	
+	//绑定手机号解除绑定手机号
+	var Mobile_phone_raw_ri = ''; 
+	var Mobile_yanzheng_raw_ri = ''; 
+	 $("#Mobile_phone_raw_ri").bind('input propertychange', function () {
+        Mobile_phone_raw_ri = $("#Mobile_phone_raw_ri").val();
+        if(Mobile_phone_raw_ri!=''&&Mobile_yanzheng_raw_ri!=''){
+    		$("#jiechu").css('background','#DE2121')
+        }else{
+    		$("#jiechu").css('background',' rgba(222, 33, 33, 0.2)')
+        }
+    });
+	 $("#Mobile_yanzheng_raw_ri").bind('input propertychange', function () {
+        Mobile_yanzheng_raw_ri = $("#Mobile_yanzheng_raw_ri").val();
+        if(Mobile_phone_raw_ri!=''&&Mobile_yanzheng_raw_ri!=''){
+			$("#jiechu").css('background','#DE2121')
+        }else{
+    		$("#jiechu").css('background',' rgba(222, 33, 33, 0.2)')
+        }
+    });
+    //获取验证码
+	$("#Mobile_phone_huoqu").click(function(){
+		$("#Mobile_phone_xp").html('')
+		var that = $(this)
+		if(that.html()=='获取验证码'){
+			var num = 60;
+			var jishi = setInterval(function(){
+	    		num--;
+	    		if(num==0){
+	    			$("#Mobile_phone_huoqu").html('获取验证码');
+	    			$("#Mobile_phone_huoqu").css("background-color","#18A0FB")
+	    			clearInterval(jishi);
+					num = 60;
+	    		}else{
+	    			$("#Mobile_phone_huoqu").html(num+'s后重新重发')
+	    			$("#Mobile_phone_huoqu").css("background-color","rgba(24, 160, 251, 0.4)")
+	    		}
+	    	},1000)
+			$.ajax({
+			 	type:'POST',
+			 	url:"https://api.htlocalservice.com/muke/public/api/Users/sendMsg",
+			 	dataType:"json",
+			 	async:true,
+			 	traditional:true,
+			 	data:{
+		 			token:localStorage.lastname,//登录令牌
+			 		mobile:$("#Mobile_phone_raw_ri").val(),//手机号
+			 	},
+			 	success:function(res){
+			 		if(res.code==200){
+			 			success_pop(res.msg,2000)
+			 			$("#Mobile_phone_sp").html(res.msg);
+			 			setTimeout(function(){
+			 				$("#Mobile_phone_sp").html('')
+			 			},2000)
+			 		}else if(res.code == -1){
+			 			window.location.href='login.html';
+			 		}else if(res.code==-20){
+			 			window.location.href='login.html';
+			 		}else if(res.code==-30){
+			 			window.location.href='xinxiwanshan.html';
+			 		}else{
+			 			clearInterval(jishi);
+						num = 60;
+			 			$(".register_tishi_shouji").html(res.msg);
+			 			$("#Mobile_phone_huoqu").html('获取验证码');
+			 			$("#Mobile_phone_sp").html(res.msg);
+			 			setTimeout(function(){
+			 				$("#Mobile_phone_sp").html('')
+			 			},2000)
+			 		}
+			 	},
+			 	complete:function(res){
+			 		
+			 	},
+			 	error:function(res){
+		
+			 	}
+			 })
+		}
+		
+	})
+    //解除绑定
+	$("#jiechu").click(function(){
+		$("#Mobile_phone_sp").html('')
+		$("#Mobile_phone_xp").html('')
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/checkCode",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 		mobile:$("#Mobile_phone_raw_ri").val(),//密码
+		 		code:$("#Mobile_yanzheng_raw_ri").val(),//重复密码
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			$("#xin_Mobile_phone").css('display','block')
+		 			$("#Mobile_phone").css('display','none')
+		 		}else if(res.code==0){
+		 			$("#Mobile_phone_sp").html(res.msg)
+		 			setTimeout(function(){
+		 				$("#Mobile_phone_sp").html('')
+		 			},2000)
+		 		}else if(res.code==-3){
+		 			$("#Mobile_phone_xp").html(res.msg)
+		 			setTimeout(function(){
+		 				$("#Mobile_phone_xp").html('')
+		 			},2000)
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	
+	
+	
+	$('.tuichu').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_sp').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_no').click(function(){
+		$('.tuichu_tankuang').css('display','none')
+	})
+	$('.tuichu_tankuang_yes').click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/logOut",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			window.location.href='home.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	 $.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 个人设置')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+</script>

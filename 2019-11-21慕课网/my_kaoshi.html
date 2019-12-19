@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my_integral.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<div id="my_favorite">
+    		<div id="mylearninfo"></div>
+    		<div class="my_favorite_main clear">
+    			<div class="inner clear">
+    				<div class="my_favorite_main_le">
+	    				<ul>
+	    					<li><a href="my_favorite.html">我的收藏</a></li>
+	    					<li><a href="my_answer.html" >我的答题</a></li>
+	    					<li class="ac">我的考试</li>
+	    					<!--<li>我的订单</li>-->
+	    					<li><a href="my_integral.html" >我的积分</a></li>
+	    					<li><a href="study_history.html">学习历史</a></li>
+	    					<!--<li>消息通知</li>-->
+	    					<li><a href="personal_setting.html">个人设置</a></li>
+	    				</ul>
+	    				<div class="tuichu">
+	    					安全退出
+	    				</div>
+	    			</div>
+	    			<div class="my_favorite_main_ri">
+						<div class="my_intrgral_main_ri_mian">
+							<ul class="clear myIntegral">
+								<li data-id="1" class="ac">未作答试卷</li>
+								<li data-id="2">已作答试卷</li>
+							</ul>
+	    				</div>
+	    				<!--答题积分-->
+						<div class="weizuoda">
+							<style type="text/css">
+									.weizuoda_main{
+										border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+										padding-bottom: 16px;
+										margin-top: 16px;
+									}
+									.weizuoda_main_le{
+										width: 680px;
+										float: left;
+									}
+									.weizuoda_main_le_tit{
+										font-weight: 600;
+										font-size: 16px;
+										line-height: 24px;
+										color: rgba(0, 0, 0, 0.8);
+									}
+									.weizuoda_main_le_time{
+										margin-top: 6px;
+									}
+									.weizuoda_main_le_time_le{
+										font-size: 14px;
+										line-height: 20px;
+										color: rgba(0, 0, 0, 0.4);
+										float: left;
+									}
+									.weizuoda_main_le_time_le span{
+										font-size: 14px;
+										line-height: 20px;
+										color: rgba(0, 0, 0, 0.6);
+										margin-left: 4px;
+									}
+									.weizuoda_main_le_time_ri{
+										float: left;
+										margin-left: 40px;
+										font-size: 14px;
+										line-height: 20px;
+										color: rgba(0, 0, 0, 0.4);
+									}
+									.weizuoda_main_le_time_ri span{
+										font-size: 14px;
+										line-height: 20px;
+										color: rgba(0, 0, 0, 0.6);
+										margin-left: 4px;
+									}
+									.weizuoda_main_ri{
+										background: #DE2121;
+										border-radius: 4px;
+										width: 140px;
+										height: 40px;
+										font-size: 14px;
+										line-height: 40px;
+										text-align: center;
+										color: #FFFFFF;
+										float: right;
+										margin-top: 6px;
+										cursor: pointer;
+									}
+									.weizuoda_main_le_tit_ri{
+										float: right;
+										font-size: 14px;
+										line-height: 24px;
+										color: rgba(0, 0, 0, 0.4);
+									}
+									.weizuoda_main_le_tit_ri span{
+										font-weight: 600;
+										font-size: 18px;
+										line-height: 24px;
+										color: #FF8A35;
+									}
+								</style>
+							<div class="weizuoda_main clear">
+								<div class="weizuoda_main_le">
+									<div class="weizuoda_main_le_tit">2019年第一季度考试</div>
+									<div class="weizuoda_main_le_time clear">
+										<div class="weizuoda_main_le_time_le">
+											开始答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+										<div class="weizuoda_main_le_time_ri">
+											结束答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+									</div>
+								</div>
+								<div class="weizuoda_main_ri">
+									<a href="answer.html" style="color: #fff;">开始答题</a>
+								</div>
+							</div>
+							<div class="weizuoda_main clear">
+								<div class="weizuoda_main_le">
+									<div class="weizuoda_main_le_tit">2019年第一季度考试</div>
+									<div class="weizuoda_main_le_time clear">
+										<div class="weizuoda_main_le_time_le">
+											开始答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+										<div class="weizuoda_main_le_time_ri">
+											结束答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+									</div>
+								</div>
+								<div class="weizuoda_main_ri" style="background: rgba(222, 33, 33, 0.4);">
+									已过期
+								</div>
+							</div>
+						</div>
+						<!--没有答题积分提示-->
+						<div id="no" class="yizuoda_no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！您还没有未作答试卷</p>
+						</div>
+	    				<!--登录积分-->
+						<div class="yizuoda" style="display: none;">
+							<div class="weizuoda_main clear">
+								<div class="yizuoda_main_le">
+									<div class="weizuoda_main_le_tit clear">
+										2019年第一季度考试
+										<div class="weizuoda_main_le_tit_ri">
+											答题得分：
+											<span>75</span>
+										</div>
+									</div>
+									<div class="weizuoda_main_le_time clear">
+										<div class="weizuoda_main_le_time_le">
+											开始答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+										<div class="weizuoda_main_le_time_ri">
+											结束答题时间：
+											<span>2019-03-15 19:00</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="tuichu_tankuang clear" style="display: none;">
+				<span class="tuichu_tankuang_sp" style="cursor: pointer;">×</span>
+				<p class="tuichu_tankuang_p">确定要退出账号吗，您将无法浏览部分内容。</p>
+				<div class="tuichu_tankuang_no"style="cursor: pointer;">取消</div>
+				<div class="tuichu_tankuang_yes"style="cursor: pointer;">确定</div>
+			</div>
+    	</div>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	$("#head").load("head.html");
+	$("#bases").load("base.html");
+	$("#mylearninfo").load("mylearninfo.html");
+	function myIntegral(a){
+	 	$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/myIntegral",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		type:a,
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			if(a==2){
+		 				
+		 			}else if(a==1){
+		 				
+		 			}
+		 		}if(res.code==-1){
+					window.location.href='login.html';
+					$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}else if(res.code==-200){
+					window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 myIntegral(1);
+	$(".myIntegral li").click(function(){
+		for(let i=0;i<$(".myIntegral li").length;i++){
+			$(".myIntegral li").eq(i).removeClass('ac')
+		}
+		$(this).addClass('ac');
+		let that = $(this)
+		if(that[0].dataset.id == 1){
+			//为作答
+			$(".weizuoda").css('display','block')
+			//以作答
+			$(".yizuoda").css('display','none')
+		}else if(that[0].dataset.id == 2){
+			//以作答
+			$(".yizuoda").css('display','block')
+			//为作答
+			$(".weizuoda").css('display','none')
+		}
+		myIntegral(that[0].dataset.id)
+	})
+	$('.tuichu').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_sp').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_no').click(function(){
+		$('.tuichu_tankuang').css('display','none')
+	})
+	$('.tuichu_tankuang_yes').click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/logOut",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			window.location.href='home.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 我的考试')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	})
+</script>

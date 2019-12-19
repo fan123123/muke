@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my_answer.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<div id="my_favorite">
+    		<div id="mylearninfo"></div>
+    		<div class="my_favorite_main clear">
+    			<div class="inner clear">
+    				<div class="my_favorite_main_le">
+    					<ul>
+	    					<li><a href="my_favorite.html">我的收藏</a></li>
+	    					<li class="ac">我的答题</li>
+	    					<li><a href="my_kaoshi.html" >我的考试</a></li>
+	    					<!--<li>我的订单</li>-->
+	    					<li><a href="my_integral.html">我的积分</a></li>
+	    					<li><a href="study_history.html">学习历史</a></li>
+	    					<!--<li>消息通知</li>-->
+	    					<li><a href="personal_setting.html">个人设置</a></li>
+	    				</ul>
+	    				<div class="tuichu">
+	    					安全退出
+	    				</div>
+	    			</div>
+	    			<div class="my_favorite_main_ri">
+	    				<p>我的答题</p>
+	    				<div class="my_favorite_main_ri_main">
+	    					
+	    				</div>
+	    				<!--没有课程提示-->
+						<div id="no" style="display: none;padding-top: 80px;">
+							<img src="img/cuo.png"/>
+							<p>抱歉！还没有回答任何问题</p>
+						</div>
+	    			</div>
+    			</div>
+    		</div>
+    		<div class="tuichu_tankuang clear" style="display: none;">
+				<span class="tuichu_tankuang_sp" style="cursor: pointer;">×</span>
+				<p class="tuichu_tankuang_p">确定要退出账号吗，您将无法浏览部分内容。</p>
+				<div class="tuichu_tankuang_no"style="cursor: pointer;">取消</div>
+				<div class="tuichu_tankuang_yes"style="cursor: pointer;">确定</div>
+			</div>
+    	</div>
+		<!--底部-->
+	</body>
+</html>
+<script type="text/javascript">
+	 $("#head").load("head.html");
+	 $("#bases").load("base.html");
+	 $("#mylearninfo").load("mylearninfo.html");
+	 //	 我的答题
+	function myAnswers(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/myAnswers",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			if(res.data==''){
+		 				$('#no').css('display','block');
+		 			}else{
+		 				$('#no').css('display','none');
+		 			}
+		 			for(let i=0;i<res.data.length;i++){
+						let a = `
+							<div>	
+								<div class="my_favorite_main_ri_title clear">
+			    					<div class="my_favorite_main_ri_title_le">
+			    						<p>课程：</p>
+			    						<span data-id='`+res.data[i].video_id+`'>`+res.data[i].title+`</span>
+			    					</div>
+			    					<div class="my_favorite_main_ri_title_ri">
+			    						<div class="my_favorite_main_ri_title_ri_bot">`
+						let b = ``;
+						if(res.data[i].is_right==1){
+							b +=`<img src="img/zhengque.png"/>
+								<span  style="color: #39B54A">回答正确</span>`
+						}else{
+							b +=`
+								<img src='img/cuo_1.png'/>
+    							<span style="color: #FF0000">回答错误</span>`
+						}
+		    			a += b				
+		    		    let c = 	`</div>
+			    						<div style='color:rgba(0,0,0,.6)' class="my_favorite_main_ri_title_ri_top">
+			    							`+res.data[i].answer_time+`
+			    						</div>
+			    					</div>
+			    				</div>
+			    				<div class="my_favorite_main_ri_inner">
+			    					`+res.data[i].question_title+`
+			    				</div>
+			    				<div class="my_favorite_main_ri_bot">
+			    					正确答案：`;
+		    				a+=c	
+	    				let d =	''
+	    						for(let j=0;j<=res.data[i].choice_text.length-1;j++){
+			    					d+=`<span style='margin-right:40px'>`+(j+1)+`.`+res.data[i].choice_text[j]+`</span>`
+			    				}
+	    				a+=d
+	    				let e = `</div>
+							</div>`
+						a+=e
+						$(".my_favorite_main_ri_main").append(a)
+					}
+		 			$(".my_favorite_main_ri_title_le span").click(function(e){
+//		 				console.log(132)
+						window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+//		 				location.replace('detail_page.html?'+e.currentTarget.dataset.id);
+		 			})
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	 myAnswers();
+	 
+	$('.tuichu').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_sp').click(function(){
+		$('.tuichu_tankuang').css('display','block')
+	})
+	$('.tuichu_tankuang_no').click(function(){
+		$('.tuichu_tankuang').css('display','none')
+	})
+	$('.tuichu_tankuang_yes').click(function(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Users/logOut",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			window.location.href='home.html';
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	 $.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 我的答题')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+</script>

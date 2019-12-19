@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="css/base.css"/>
+<div id="base" style="background-color: #fff;">
+	<div class="inner">
+		<ul class="clear">
+			<li>联系我们</li>
+			<li>讲师招募</li>
+			<li>意见反馈</li>
+			<li class="zuihou">友情链接</li>
+		</ul>
+		<ul class="clear ul2" style="margin-top: 8px;">
+			<li class="copyright">@ 2019 XXXXX.com</li>
+			<li class="bah">京ICP备 12003892号-11</li>
+			<li class="company">北京XXXX文化传媒有限公司 营业执照</li>
+			<li class="gzh" style="margin-right: 0;">公众号</li>
+		</ul>
+	</div>	
+</div>
+<script type="text/javascript">
+	function system(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+	 			token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			$(".copyright").html(res.data.copyright)
+		 			$(".bah").html(res.data.bah)
+		 			$(".company").html(res.data.company)
+		 		}else if(res.code==-1){
+//					location.replace('login.html');	 	
+					$('.detection_yes').css('display','none')
+					$('.detection_no').css('display','block')
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	system();
+</script>

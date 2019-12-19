@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/Boutique.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--导航栏-->
+		<style type="text/css">
+			#head .inner .head_le #Boutiquess{
+				color: #D82929;
+			}
+		</style>
+		<div id="head"></div>
+		<!--主要内容-->
+		<div id="Boutique">
+			<div class="seek">
+				<div class="inner" style="position: relative;">
+					<input type="" name="" id="search" value="" placeholder="输入搜索课程的关键词"/>
+					<img class="sousuo" src="img/Boutique_seek.png"/>
+				</div>
+			</div>
+			<div id="tab">
+				<div class="inner">
+					<ul class="tab clear"></ul>
+				</div>
+				<script type="text/javascript">
+					
+				</script>
+			</div>
+			<!--课程分类：-->
+			<div id="classify">
+				<div class="inner">
+					<ul class="clear course_classification">
+						<span class="one">课程分类：</span>
+						
+					</ul>
+					<ul class="clear paixu_pa">
+						<span class="one paixu">课程排序：</span>
+						<li data-id = "1">最新课程</li>
+						<li data-id = "2">最受欢迎</li>
+					</ul>
+				</div>
+			</div>
+			<div id="zhanwei" style="display: none;"></div>
+			<div id="tishi" class="inner">
+				“搜索关键词”的相关搜索
+				<span>共12个课程</span>
+			</div>
+			<!--全部课程-->
+			<div id="curriculum" >
+				<div class="inner  clear">
+					<div class="Boutique clear">
+						
+					</div>
+				</div>
+			</div>
+			<!--没有课程提示-->
+			<div id="no" class="inner" style="display: none;">
+				<img src="img/cuo.png"/>
+				<p>抱歉！未搜索到相关课程</p>
+			</div>
+		</div>
+		<!--底部-->
+		<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	 $("#head").load("head.html");
+	 $("#bases").load("base.html");//localStorage.sousuo
+	setTimeout(function(){
+		localStorage.removeItem('pid');
+		localStorage.removeItem('sousuo');
+	},500)
+	 //搜索
+	 $('.sousuo').click(function(){
+	 	$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		search:$("#search").val(),//搜索关键词 没有没空
+		 		type_id:'',//类型id 没有为空
+		 		sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==404){
+		 			$("#zhanwei").css('display','block');
+	 				$("#tishi").css('display','none');
+		 			$(".Boutique").html('');
+		 			$('#no').css('display','block');
+		 		}else if(res.code==200){
+		 			$('#no').css('display','none');
+		 			if(res.data.search != ''){
+		 				$("#tishi").css('display','block');
+		 				$("#tishi").html('');
+				 		$("#tishi").append(`
+			 				“`+res.data.search+`”的相关搜索
+							<span>共`+res.data.count+`个课程</span>
+				 		`);
+		 				$("#zhanwei").css('display','none');
+		 			}else{
+		 				$("#zhanwei").css('display','block');
+		 				$("#tishi").css('display','none');
+		 			}
+		 			$('#no').css('display','none');
+		 			$(".Boutique").html('');
+				    for(let i=0;i<res.data.course.length;i++){
+				 		//全能社工
+						$(".Boutique").append(`
+							<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+								<div class="newest_main_ho"></div>
+								<div style="position:relative;">
+									<div class="newest_time">`+res.data.course[i].duration+`</div>
+									<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+								</div>
+								<div class="newest_main_zhong clear">
+									<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+									<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+								</div>
+								<div class="newest_main_xia">
+									<p>`+res.data.course[i].title+`</p>
+								</div>
+							</div>	
+						`)
+						$(".newest_main").click(function(e){
+							window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+			 			})
+					}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 })
+	 $("#search").keyup(function(event){
+		if(event.keyCode == 13){
+			$.ajax({
+			 	type:'POST',
+			 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+			 	dataType:"json",
+			 	async:true,
+			 	traditional:true,
+			 	data:{
+			 		search:$("#search").val(),//搜索关键词 没有没空
+			 		type_id:'',//类型id 没有为空
+			 		sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+			 		token:localStorage.lastname,//登录令牌
+			 	},
+			 	success:function(res){
+			 		if(res.code==404){
+			 			$("#zhanwei").css('display','block');
+		 				$("#tishi").css('display','none');
+			 			$(".Boutique").html('');
+			 			$('#no').css('display','block');
+			 		}else if(res.code==200){
+			 			$('#no').css('display','none');
+			 			if(res.data.search != ''){
+			 				$("#tishi").css('display','block');
+			 				$("#tishi").html('');
+					 		$("#tishi").append(`
+				 				“`+res.data.search+`”的相关搜索
+								<span>共`+res.data.count+`个课程</span>
+					 		`);
+			 				$("#zhanwei").css('display','none');
+			 			}else{
+			 				$("#zhanwei").css('display','block');
+			 				$("#tishi").css('display','none');
+			 			}
+			 			$('#no').css('display','none');
+			 			$(".Boutique").html('');
+					    for(let i=0;i<res.data.course.length;i++){
+					 		//全能社工
+							$(".Boutique").append(`
+								<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+									<div class="newest_main_ho"></div>
+									<div style="position:relative;">
+										<div class="newest_time">`+res.data.course[i].duration+`</div>
+										<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+									</div>
+									<div class="newest_main_zhong clear">
+										<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+										<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+									</div>
+									<div class="newest_main_xia">
+										<p>`+res.data.course[i].title+`</p>
+									</div>
+								</div>	
+							`)
+							$(".newest_main").click(function(e){
+								window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+				 			})
+						}
+			 		}else if(res.code == -1){
+			 			window.location.href='login.html';
+			 		}else if(res.code==-20){
+			 			window.location.href='login.html';
+			 		}else if(res.code==-30){
+			 			window.location.href='xinxiwanshan.html';
+			 		}
+			 	},
+			 	complete:function(res){
+			 		
+			 	},
+			 	error:function(res){
+		
+			 	}
+			 })
+		}
+	});
+	//课程类型id 
+	let type_id = 1;
+	 //排序方式（1为按时间排序 2为按热度排序）没有没空
+	let sort = 0;
+	 //搜索关键词 没有没空
+	let search = '';
+	let newid = ''
+	let id =location.search;
+	if(id != ''){
+		 for(let i = 1; i<=id.length-1;i++){
+	//   	console.log(iphoen[i])
+	     	newid+=id[i]
+	     }
+		type_id=newid
+	}else if(localStorage.pid!=undefined){
+		type_id = localStorage.pid
+	}
+	let sousuo = '';
+	if(localStorage.sousuo!=undefined){
+		sousuo = localStorage.sousuo
+	}
+	function courseType(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/index/courseType",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+				token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		//初始精品页面加载数据
+//		 		type_id = res.data[0].id;
+				for(let i=0;i<res.data.length;i++){
+					if(localStorage.pid!=undefined){
+						if(localStorage.pid == res.data[i].id){
+							$(".tab").append(`
+								<li class="ac" data-id='`+res.data[i].id+`' data-index='`+i+`'>
+									`+res.data[i].type+`
+									<div class="bc"></div>
+								</li>
+							`)
+						}else{
+							$(".tab").append(`
+								<li data-id='`+res.data[i].id+`'  data-index='`+i+`'>
+									`+res.data[i].type+`
+									<div></div>
+								</li>
+							`)
+						}
+					}else{
+						$(".tab").append(`
+							<li data-id='`+res.data[i].id+`'  data-index='`+i+`'>
+								`+res.data[i].type+`
+								<div></div>
+							</li>
+						`)
+						$(".course_classification").css('display','none')
+					}
+				}
+				$(".tab li").click(function(e){
+					for(let i=0;i<$('.tab')[0].children.length;i++){
+						$('.tab')[0].children[i].className = '';
+						$('.tab')[0].children[i].children[0].className = '';
+					}
+					type_id=$(this)[0].dataset.id;
+					//课程分类
+					$(".course_classification").html('<span class="one">课程分类：</span>');
+					if(res.data[$(this)[0].dataset.index].data ==''){
+						$(".course_classification").css('display','none')
+					}else{
+						$(".course_classification").css('display','block')
+					}
+					if(res.data[$(this)[0].dataset.index].has_video == 0){
+						$('.course_classification').css('display','none')
+					}
+					for(let j=0;j<res.data[$(this)[0].dataset.index].data.length;j++){
+						$(".course_classification").append(`
+							<li data-id='`+res.data[$(this)[0].dataset.index].data[j].id+`'>`+res.data[$(this)[0].dataset.index].data[j].type+`</li>
+						`)
+					}
+					$(".course_classification li").click(function(e){
+						for(let i=0;i<$('.course_classification')[0].children.length;i++){
+							$('.course_classification')[0].children[i].className = '';
+						}
+						type_id = $(this)[0].dataset.id;
+						$(this).addClass('ac')
+						$.ajax({
+						 	type:'POST',
+						 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+						 	dataType:"json",
+						 	async:true,
+						 	traditional:true,
+						 	data:{
+						 		search:'',//搜索关键词 没有没空
+						 		type_id:$(this)[0].dataset.id,//类型id 没有为空
+						 		sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 						token:localStorage.lastname,//登录令牌
+						 	},
+						 	success:function(res){
+						 		if(res.code==404){
+						 			$("#zhanwei").css('display','block');
+					 				$("#tishi").css('display','none');
+						 			$(".Boutique").html('');
+						 			$('#no').css('display','block');
+						 		}else if(res.code==200){
+						 			$('#no').css('display','none');
+						 			
+						 			if(res.data.search != ''){
+						 				$("#tishi").css('display','block');
+						 				$("#tishi").html('');
+								 		$("#tishi").append(`
+							 				“`+res.data.search+`”的相关搜索
+											<span>共`+res.data.count+`个课程</span>
+								 		`);
+						 				$("#zhanwei").css('display','none');
+						 			}else{
+						 				$("#zhanwei").css('display','block');
+						 				$("#tishi").css('display','none');
+						 			}
+						 			$('#no').css('display','none');
+						 			$(".Boutique").html('');
+								    for(let i=0;i<res.data.course.length;i++){
+								 		//全能社工
+										$(".Boutique").append(`
+											<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+												<div class="newest_main_ho"></div>
+												<div style="position:relative;">
+													<div class="newest_time">`+res.data.course[i].duration+`</div>
+													<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+												</div>
+												<div class="newest_main_zhong clear">
+													<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+													<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+												</div>
+												<div class="newest_main_xia">
+													<p>`+res.data.course[i].title+`</p>
+												</div>
+											</div>	
+										`)
+										$(".newest_main").click(function(e){
+											window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+							 			})
+									}
+						 		}else if(res.code == -1){
+						 			window.location.href='login.html';
+						 		}else if(res.code==-20){
+						 			window.location.href='login.html';
+						 		}else if(res.code==-30){
+						 			window.location.href='xinxiwanshan.html';
+						 		}
+						 	},
+						 	complete:function(res){
+						 		
+						 	},
+						 	error:function(res){
+					
+						 	}
+						 })
+					})
+					$.ajax({
+					 	type:'POST',
+					 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+					 	dataType:"json",
+					 	async:true,
+					 	traditional:true,
+					 	data:{
+					 		search:'',//搜索关键词 没有没空
+					 		type_id:$(this)[0].dataset.id,//类型id 没有为空
+					 		sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 					token:localStorage.lastname,//登录令牌
+					 	},
+					 	success:function(res){
+					 		if(res.code==404){
+					 			$("#zhanwei").css('display','block');
+				 				$("#tishi").css('display','none');
+					 			$(".Boutique").html('');
+					 			$('#no').css('display','block');
+					 		}else if(res.code==200){
+					 			$('#no').css('display','none');
+					 			if(res.data.search != ''){
+					 				$("#tishi").css('display','block');
+					 				$("#tishi").html('');
+							 		$("#tishi").append(`
+						 				“`+res.data.search+`”的相关搜索
+										<span>共`+res.data.count+`个课程</span>
+							 		`);
+					 				$("#zhanwei").css('display','none');
+					 			}else{
+					 				$("#zhanwei").css('display','block');
+					 				$("#tishi").css('display','none');
+					 			}
+					 			$('#no').css('display','none');
+					 			$(".Boutique").html('');
+							    for(let i=0;i<res.data.course.length;i++){
+							 		//全能社工
+									$(".Boutique").append(`
+										<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+											<div class="newest_main_ho"></div>
+											<div style="position:relative;">
+												<div class="newest_time">`+res.data.course[i].duration+`</div>
+												<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+											</div>
+											<div class="newest_main_zhong clear">
+												<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+												<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+											</div>
+											<div class="newest_main_xia">
+												<p>`+res.data.course[i].title+`</p>
+											</div>
+										</div>	
+									`)
+									$(".newest_main").click(function(e){
+						 				location.replace('detail_page.html?'+e.currentTarget.dataset.id);
+						 			})
+								}
+					 		}else if(res.code == -1){
+					 			window.location.href='login.html';
+					 		}else if(res.code==-20){
+					 			window.location.href='login.html';
+					 		}else if(res.code==-30){
+					 			window.location.href='xinxiwanshan.html';
+					 		}
+					 		
+					 	},
+					 	complete:function(res){
+					 		
+					 	},
+					 	error:function(res){
+				
+					 	}
+					 })
+					$(this).context.children[0].className = 'bc';
+					$(this).addClass('ac')
+				})
+		 		//课程分类
+//		 		console.log(localStorage.pid)
+		 		if(localStorage.pid != undefined){
+		 			for(let j=0;j<res.data.length;j++){
+		 				console.log(res.data[j].id)
+						if(res.data[j].id == localStorage.pid){
+							if(res.data[j].data == ''){
+								$(".course_classification").css('display','none')
+							}else{
+								for(let k=0;k<res.data[j].data.length;k++){
+									if(newid == res.data[j].data[k].id){
+										$(".course_classification").append(`
+											<li class='ac' data-id='`+res.data[j].data[k].id+`'>`+res.data[j].data[k].type+`</li>
+										`)
+									}else{
+										$(".course_classification").append(`
+											<li data-id='`+res.data[j].data[k].id+`'>`+res.data[j].data[k].type+`</li>
+										`)
+									}
+								}
+							}
+						}
+					}
+		 		}else{
+		 			for(let k=0;k<res.data[0].data.length;k++){
+						$(".course_classification").append(`
+							<li data-id='`+res.data[0].data[k].id+`'>`+res.data[0].data[k].type+`</li>
+						`)
+					}
+		 		}
+				$(".course_classification li").click(function(e){
+					type_id=$(this)[0].dataset.id;
+					for(let i=0;i<$('.course_classification')[0].children.length;i++){
+						$('.course_classification')[0].children[i].className = '';
+					}
+					$(this).addClass('ac')
+					$.ajax({
+					 	type:'POST',
+					 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+					 	dataType:"json",
+					 	async:true,
+					 	traditional:true,
+					 	data:{
+					 		search:'',//搜索关键词 没有没空
+					 		type_id:$(this)[0].dataset.id,//类型id 没有为空
+					 		sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 					token:localStorage.lastname,//登录令牌
+					 	},
+					 	success:function(res){
+					 		if(res.code==404){
+					 			$("#zhanwei").css('display','block');
+				 				$("#tishi").css('display','none');
+					 			$(".Boutique").html('');
+					 			$('#no').css('display','block');
+					 		}else if(res.code==200){
+					 			$('#no').css('display','none');
+					 			
+					 			if(res.data.search != ''){
+					 				$("#tishi").css('display','block');
+					 				$("#tishi").html('');
+							 		$("#tishi").append(`
+						 				“`+res.data.search+`”的相关搜索
+										<span>共`+res.data.count+`个课程</span>
+							 		`);
+					 				$("#zhanwei").css('display','none');
+					 			}else{
+					 				$("#zhanwei").css('display','block');
+					 				$("#tishi").css('display','none');
+					 			}
+					 			$('#no').css('display','none');
+					 			$(".Boutique").html('');
+							    for(let i=0;i<res.data.course.length;i++){
+							 		//全能社工
+									$(".Boutique").append(`
+										<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+											<div class="newest_main_ho"></div>
+											<div style="position:relative;">
+												<div class="newest_time">`+res.data.course[i].duration+`</div>
+												<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+											</div>
+											<div class="newest_main_zhong clear">
+												<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+												<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+											</div>
+											<div class="newest_main_xia">
+												<p>`+res.data.course[i].title+`</p>
+											</div>
+										</div>	
+									`)
+									$(".newest_main").click(function(e){
+										window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+						 			})
+								}
+					 		}else if(res.code == -1){
+					 			window.location.href='login.html';
+					 		}else if(res.code==-20){
+					 			window.location.href='login.html';
+					 		}else if(res.code==-30){
+					 			window.location.href='xinxiwanshan.html';
+					 		}
+					 	},
+					 	complete:function(res){
+					 		
+					 	},
+					 	error:function(res){
+				
+					 	}
+					 })
+					
+				})
+		 		
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	 }
+	courseType();
+	//首页点击传值
+	function losclpid(){
+		 $.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		search:sousuo,//搜索关键词 没有没空
+				type_id:type_id,//类型id 没有为空
+				sort:'',//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==404){
+		 			$("#zhanwei").css('display','block');
+	 				$("#tishi").css('display','none');
+		 			$(".Boutique").html('');
+		 			$('#no').css('display','block');
+		 		}else if(res.code==200){
+		 			localStorage.removeItem('sousuo');
+		 			$('#no').css('display','none');
+		 			if(res.data.search != ''){
+		 				$("#tishi").css('display','block');
+		 				$("#tishi").html('');
+				 		$("#tishi").append(`
+			 				“`+res.data.search+`”的相关搜索
+							<span>共`+res.data.count+`个课程</span>
+				 		`);
+		 				$("#zhanwei").css('display','none');
+		 			}else{
+		 				$("#zhanwei").css('display','block');
+		 				$("#tishi").css('display','none');
+		 			}
+		 			$('#no').css('display','none');
+		 			$(".Boutique").html('');
+				    for(let i=0;i<res.data.course.length;i++){
+				 		//全能社工
+						$(".Boutique").append(`
+							<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+								<div class="newest_main_ho"></div>
+								<div style="position:relative;">
+									<div class="newest_time">`+res.data.course[i].duration+`</div>
+									<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+								</div>
+								<div class="newest_main_zhong clear">
+									<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+									<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+								</div>
+								<div class="newest_main_xia">
+									<p>`+res.data.course[i].title+`</p>
+								</div>
+							</div>	
+						`)
+						$(".newest_main").click(function(e){
+							window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+			 			})
+					}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+	losclpid()
+	$('.paixu_pa li').click(function(){
+		for(let i=1;i<$('.paixu_pa')[0].children.length;i++){
+			$('.paixu_pa')[0].children[i].className = '';
+		}
+		$(this).addClass('ac');
+		console.log(type_id,111)
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/Boutique/courseIndex",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		search:'',//搜索关键词 没有没空
+		 		type_id:type_id,//类型id 没有为空
+		 		sort:$(this)[0].dataset.id,//排序方式（1为按时间排序 2为按热度排序）没有没空
+		 		token:localStorage.lastname,//登录令牌
+		 	},
+		 	success:function(res){
+		 		if(res.code==404){
+		 			$("#zhanwei").css('display','block');
+	 				$("#tishi").css('display','none');
+		 			$(".Boutique").html('');
+		 			$('#no').css('display','block');
+		 		}else if(res.code==200){
+		 			$('#no').css('display','none');
+		 			if(res.data.search != ''){
+		 				$("#tishi").css('display','block');
+		 				$("#tishi").html('');
+				 		$("#tishi").append(`
+			 				“`+res.data.search+`”的相关搜索
+							<span>共`+res.data.count+`个课程</span>
+				 		`);
+		 				$("#zhanwei").css('display','none');
+		 			}else{
+		 				$("#zhanwei").css('display','block');
+		 				$("#tishi").css('display','none');
+		 			}
+		 			$('#no').css('display','none');
+		 			$(".Boutique").html('');
+				    for(let i=0;i<res.data.course.length;i++){
+				 		//全能社工
+						$(".Boutique").append(`
+							<div class="newest_main" data-id='`+res.data.course[i].id+`'>
+								<div class="newest_main_ho"></div>
+								<div style="position:relative;">
+									<div class="newest_time">`+res.data.course[i].duration+`</div>
+									<img class="newest_main_img" src="`+res.data.course[i].video_img+`"/>
+								</div>
+								<div class="newest_main_zhong clear">
+									<div class="newest_main_zhong_form">`+res.data.course[i].type+`</div>
+									<div class="newest_main_zhong_teacher">讲师：`+res.data.course[i].teacher_name+`</div>
+								</div>
+								<div class="newest_main_xia">
+									<p>`+res.data.course[i].title+`</p>
+								</div>
+							</div>	
+						`)
+						$(".newest_main").click(function(e){
+							window.location.href='detail_page.html?'+e.currentTarget.dataset.id;
+			 			})
+					}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	})
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 精品课程')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+</script>

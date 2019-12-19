@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my_favorite.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<style type="text/css">
+    		.answer_toptit{
+    			font-weight: 600;
+				font-size: 24px;
+				text-align: center;
+				line-height: 32px;
+				color: rgba(0, 0, 0, 0.8);
+				padding-top: 32px;
+    		}
+    		.answer_time{
+    			font-size: 14px;
+				line-height: 22px;
+				color: rgba(0, 0, 0, 0.8);
+				padding-top: 16px;
+				text-align: center;
+    		}
+    		.answer_times{
+				text-align: center;
+				font-weight: 600;	
+				font-size: 20px;
+				line-height: 24px;
+				color: #FF8A35;
+				padding-top: 8px;
+    		}
+    		.answer_timehint{
+    			margin: 0 auto;
+				width: 466px;
+				padding-top: 16px;
+    		}
+    		.answer_timehint_le{
+    			margin-right: 40px;
+    		}
+    		.answer_timehint_le,.answer_timehint_ri{
+    			float: left;
+    		}
+    		.fl{
+    			float: left;
+    		}
+    		.ri{
+    			float: right;
+    		}
+    		#answer{
+				width: 80%;
+				background: #FFFFFF;
+				padding: 0 24px 32px 24px;
+				margin: 0 auto;		
+				margin-bottom: 114px;		
+			}
+			.answer_sub{
+				background: #DE2121;
+				border-radius: 4px;
+				width: 320px;
+				height: 48px;
+				font-size: 16px;
+				line-height: 48px;
+				color: #FFFFFF;
+				margin: 0 auto;
+				text-align: center;
+				cursor: pointer;
+			}
+	        @media (min-width: 576px) {
+		  	    #answer{
+		  		    max-width: 370px; 
+		  	    }
+	  	    }
+			@media (min-width: 768px) {
+		 	   	#answer{
+		 	    	max-width: 470px;
+	 	    	} 
+	 	    }
+			@media (min-width: 992px) {
+		   		#answer{
+		   			max-width: 672px;
+	   			}
+	        }
+		  	@media (min-width: 1200px) {
+		    	#answer{
+		    		max-width: 672px;
+	    		}
+		    }
+			#answer .answer_p{
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 26px;
+				color: rgba(0, 0, 0, 0.8);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding-bottom: 8px;
+			}
+			#answer .answer_main{
+				margin-top: 32px;
+			}
+			#answer .answer_inner{
+				font-size: 16px;
+				line-height: 26px;
+				color: #000000;
+			}
+			#answer .answer_answer{
+				margin-bottom: 24px;
+			}
+			#answer .answer_answer li{
+				padding: 13px 24px;
+				margin-top: 16px;
+				cursor: pointer;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+			}
+    	</style>
+    	<div class="answer">
+    		<div class="answer_toptit">2019年第一季度考试</div>
+    		<div class="answer_time">考试倒计时</div>
+    		<div class="answer_times">120:60:60</div>
+    		<div class="answer_timehint clear">
+    			<div class="answer_timehint_le">
+    				<div class="fl" style="margin-right: 4px;">开始答题时间：</div>
+    				<div class="ri">2019-03-15 19:00</div>
+    			</div>
+    			<div class="answer_timehint_ri">
+    				<div class="fl" style="margin-right: 4px;">结束答题时间：</div>
+    				<div class="ri">2019-03-15 19:00</div>
+    			</div>
+    		</div>
+    		<div id="answer">
+    			
+    		</div>
+    	</div>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	 $("#head").load("head.html");
+	 $("#bases").load("base.html");
+	 $.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 我的答题')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	 })
+	let a = 2
+	for(let i=0;i<10;i++){
+		let a =`
+			<div class="answer_main" data-id='`+i+`'>
+				<div class="answer_inner">
+					社会工作者小王接待了甶邻居陪同前来求助的李奶奶，李奶奶说自己的子女都在外地工 作，老伴前几天因脑梗住院治疗。她每天要去医院送饭，昨天在回家途中扭伤脚踝，行走困难。 经过沟通，小王与李奶奶定了需要小王协助解决的具体困难，小王所做的是社会工作者通用过程中()阶段的工作。
+				</div>
+				<ul class="answer_answer dinaji`+i+`">`;
+	    let b = '';
+	    	for(let i=1;i<5;i++){
+	    		b+=`<li data-back = "1" data-id='`+i+`' data-fid='1'>签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议签订协议</li>`
+	    	}
+	    	a+=b
+	    	let c = `
+		    		</ul>
+		    	</div>
+	    	`
+	    	a+=c;
+	  	$("#answer").append(a);
+	    if(a == 1){
+		   	$(".dinaji"+i+" li").click(function(){
+		   		for(let i=0;i<$(".dinaji"+i+" li").length;i++){
+		   			$(".dinaji"+i+" li").eq(i).css('background','rgba(0, 0, 0, 0.05)');
+		   			$(".dinaji"+i+" li").eq(i).css('color','#000');
+		   		}
+		   		$(this).css('background','#DE2121');
+		   		$(this).css('color','#fff');
+		   		question_id = $(this)[0].dataset.fid
+		   		answer_id = $(this)[0].dataset.id
+		   })
+	    }else{
+	   		$(".dinaji"+i+" li").click(function(){
+				if($(this).context.dataset.back == 1){
+					$(this).context.dataset.back=2
+					$(this).css('background','rgba(222,33,33,.2)');
+//		   			$(this).css('color','#fff');				
+				}else{
+					$(this).css('background','rgba(0, 0, 0, 0.05)');
+		   			$(this).css('color','#000');
+					$(this).context.dataset.back=1
+				}
+		 		question_id = $(this)[0].dataset.fid
+		   })
+	    }
+	}
+	
+	$("#answer").append('<div class="answer_sub">提交问卷</div>');
+	$(".answer_sub").click(function(){
+		let arr = []
+		for(let i=0;i<$("#answer .answer_main").length;i++){
+			let arr1 = [];
+			arr1.a = $("#answer .answer_main").eq(i)[0].dataset.id;
+			arr1.b = ''
+			for(let j=0;j<$(".dinaji"+i+" li").length;j++){
+				if($(".dinaji"+i+" li").eq(j)[0].dataset.back == 2){
+					console.log($(".dinaji"+i+" li").eq(j)[0].dataset.id)
+					arr1.b+=$(".dinaji"+i+" li").eq(j)[0].dataset.id+','
+				}
+			}
+			if(arr1.b != ''){
+				arr1.b=arr1.b.substring(0,arr1.b.length-1); 
+			}
+			arr.push(arr1)
+		}
+		console.log(arr)
+		
+	})
+   
+   $('.answer_cancel').click(function(){
+   		$("#answer").html('');
+		$("#answer").css('display','none');
+   })
+// $(".answer_sub").click(function(){
+// 		let array_num  = '';
+// 		if(res.data.questions[num].answer_type==2){
+//			for(i=0;i<=$('.answer_answer li').length-1;i++){
+//				if($('.answer_answer li').eq(i)[0].dataset.back == 2){
+//					array_num+= $('.answer_answer li').eq(i)[0].dataset.id +','
+//				}
+//			}
+//			array_num=array_num.substring(0,array_num.length-1); 
+//		}else{
+//			array_num += answer_id
+//		}
+////		$.ajax({
+////	 		type:'POST',
+////		 	url:"https://api.htlocalservice.com/muke/public/api/Details/totals",
+////		 	dataType:"json",
+////		 	async:true,
+////		 	traditional:true,
+////		 	data:{
+////		 		question_id:question_id,//问题id
+////		 		answer_id:array_num,//答案id
+////		 		token:localStorage.lastname,//登录令牌
+////		 	},
+////		 	success:function(res){
+////		 		if(res.code==200){
+////		 			$("#answer").css('display','none');
+////		 			$("#duicuo").css('display','block');
+////		 			$("#duicuo").html('')
+////		 			$("#duicuo").append(`
+////		 				<span>×</span>
+////			    		<img src="img/xiugaigenggong.png"/>
+////			    		<p>回答正确</p>
+////			    		<div class="duicuo_inner">
+////			    			`+res.data.question_title+`
+////			    		</div>
+////			    		<div class="solution">
+////							正确答案：`+res.data.right_answer+`
+////			    		</div>
+////			    		<div class="got_it">知道了</div>
+////		 			`)
+////		 		}else if(res.code==201){
+////		 			$("#answer").css('display','none');
+////		 			$("#duicuo").css('display','block');
+////		 			$("#duicuo").html('')
+////		 			$("#duicuo").append(`
+////		 				<span>×</span>
+////			    		<img src="img/cuo.png"/>
+////			    		<p>回答错误</p>
+////			    		<div class="duicuo_inner">
+////			    			`+res.data.question_title+`
+////			    		</div>
+////			    		<div class="solution">
+////							正确答案：`+res.data.right_answer+`
+////			    		</div>
+////			    		<div class="got_it">知道了</div>
+////		 			`)
+////		 		}else if(res.code == -1){
+////		 			window.location.href='login.html';
+////		 		}else if(res.code==-20){
+////		 			window.location.href='login.html';
+////		 		}else if(res.code==-30){
+////		 			window.location.href='xinxiwanshan.html';
+////		 		}
+////		 		$(".got_it").click(function(){
+////		 			$("#duicuo").css('display','none');
+////		 		})
+////		 		$("#duicuo span").click(function(){
+////		 			$("#duicuo").css('display','none');
+////		 		})
+////		 	},
+////		 	complete:function(res){
+////		 		
+////		 	},
+////		 	error:function(res){
+////	
+////		 	}
+////		})
+// 		
+// })
+
+
+	function countTime() {  
+        //获取当前时间  
+        var date = new Date();  
+        var now = date.getTime();  
+        console.log(now,123)
+        //设置截止时间  
+        var str="2019/12/18 17:12:20";
+        var endDate = new Date(str); 
+        var end = endDate.getTime();  
+        
+        //时间差  
+        var leftTime = end-now; 
+        //定义变量 d,h,m,s保存倒计时的时间  
+        var d,h,m,s;  
+        if (leftTime>=0) {  
+            d = Math.floor(leftTime/1000/60/60/24);  
+            h = Math.floor(leftTime/1000/60/60%24);  
+            m = Math.floor(leftTime/1000/60%60);  
+            s = Math.floor(leftTime/1000%60);                     
+        }  
+		console.log(d,h,m,s)			  
+        //将倒计时赋值到div中  
+//      document.getElementById("_d").innerHTML = d+"天";  
+//      document.getElementById("_h").innerHTML = h+"时";  
+//      document.getElementById("_m").innerHTML = m+"分";  
+//      document.getElementById("_s").innerHTML = s+"秒";  
+        //递归每秒调用countTime方法，显示动态时间效果  
+        setTimeout(countTime,1000);  
+    }
+	countTime()
+</script>

@@ -1,0 +1,322 @@
+
+/** 清除内外边距 **/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+th, td /* table elements 表格元素 */ {
+    margin: 0;
+    padding: 0;
+}
+/** 设置默认字体 **/
+body,
+button, input, select, textarea /* for ie */ {
+    font: 14px/1.5 tahoma, \5b8b\4f53, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal;}
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读, 让 small 正常化 */
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+/** 重置文本格式元素 **/
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+sup { vertical-align: text-top; } /* 重置, 减少对行高的影响 */
+sub { vertical-align: text-bottom; }
+/** 重置表单元素 **/
+legend { color: #000; } /* for ie6 */
+fieldset, img { border: 0; } /* img 搭车：让链接里的 img 无边框 */
+button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */
+select{
+	-webkit-overflow-scrolling: touch;
+}
+/* 注：optgroup 无法扶正 */
+/** 重置表格元素 **/
+table { border-collapse: collapse; border-spacing: 0; }
+/* 重置 HTML5 元素 */
+article, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section,
+summary, time, mark, audio, video {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+video{
+	 border:none;
+    outline:none;
+}
+mark { background: #ff0; }
+/* 设置placeholder的默认样式 */
+:-moz-placeholder {
+    color: #ddd;
+    opacity: 1;
+}
+::-moz-placeholder {
+    color: #ddd;
+    opacity: 1;
+}
+input:-ms-input-placeholder {
+    color: #ddd;
+    opacity: 1;
+}
+input::-webkit-input-placeholder {
+    color: #ddd;
+    opacity: 1;
+}
+a:link{text-decoration:none;   /* 指正常的未被访问过的链接*/
+
+}a:visited{text-decoration:none; /*指已经访问过的链接*/
+
+}a:hover{text-decoration:none;/*指鼠标在链接*/}a:active{text-decoration:none;/* 指正在点的链接*/ 
+
+}
+img{
+	vertical-align:top;
+	vertical-align:bottom;
+	display:block;
+}
+body{
+	font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif !important;
+	z-index: 10;
+}
+
+/*下拉筐样式*/
+.xiala{
+	width: 280px;
+	height: 48px;
+	background: rgba(0, 0, 0, 0.05);
+	border-radius: 4px;
+	position: relative;
+}
+.xiala li{
+	height: 48px;
+	line-height: 48px;
+    text-indent: 16px;.
+    font-size: 14px;
+	color: rgba(0, 0, 0, 0.8);
+	cursor: pointer;
+}
+.xiala li:hover{
+	background: rgba(0, 0, 0, 0.05);
+}
+.xiala .xiala_img{
+	width: 12px;
+	height:12px;
+	position: absolute;
+	top: 18px;
+	right: 30px;
+}
+.xiala .xiala_1{
+	background: #FFFFFF;
+	width:280px;
+	height: 204px;
+	position: absolute;
+	top: 48px;
+	left: 0;
+	padding-top: 8px;
+	display: none;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+	z-index:100;
+}
+.xiala .test{
+	width: 272px;
+	height: 204px;
+	background: #FFFFFF;
+	border-radius: 4px;
+    overflow: auto;
+    border: none;
+    left: 0px;
+    margin: 0;
+}
+.xiala .scrollbar{
+    width: 30px;
+    margin: 0 auto;
+}
+.xiala .test-1::-webkit-scrollbar {/*滚动条整体样式*/
+    height: 1px;
+    width: 4px;
+
+}
+.xiala .test-1::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    /*border-radius: 10px;*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background:rgba(0, 0, 0, 0.2);
+    
+}
+.xiala .test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    /*border-radius: 10px;*/
+    background:rgba(0, 0, 0, 0.05);
+    
+}
+.xiala .xiala_text{
+	width: 280px;
+	height: 48px;
+    text-indent: 16px;
+	line-height: 48px;
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.8);
+}
+/*------------*/
+/*首航缩进*/
+/*text-indent:2em*/
+/*图片文字对齐*/
+/*display: inline-block;
+    vertical-align: middle;*/
+   /*input 清除篮框*/
+	/*outline:none;*/
+  
+ #huiyuanbiaozhi{
+ 	font-size: 10px;
+    line-height: 18px;
+    color: #000000;
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 2px 8px 4px 8px;
+    margin-top: 2px;
+    width: fit-content;
+ }
+.inner{
+	width: 1180px;
+	margin: 0 auto;
+}
+.newest_main{
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	margin-bottom: :;;
+	background-color: #fff;
+	margin-bottom: 24px;
+	width: 280px;
+	height: 244px;
+	float: left;
+	margin-right: 20px;
+	cursor: pointer;
+	position: relative;
+}
+.newest_main_ho{
+	width: 280px;
+	height: 244px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+.newest_main_ho:hover{
+	background:  rgba(255, 255, 255, 0.2);;
+}
+.newest_time{
+	padding: 0 8px;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+	color: #FFFFFF;
+	background: #D82929;
+	border-radius: 4px;
+	position:absolute;
+	bottom: 8px;
+	right: 8px;
+}
+.newest_main_img{
+	width:280px;
+	height: 140px;
+}
+.newest_main_zhong{
+	padding: 0 16px;
+	margin-top: 16px;
+}
+.newest_main_zhong_form{
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	font-size: 12px;
+	line-height: 16px;
+	color: rgba(0, 0, 0, 0.6);
+	float: left;
+	padding: 2px 8px;
+}
+.newest_main_zhong_teacher{
+	float: right;
+	font-size: 12px;
+	line-height: 20px;
+	color: rgba(0, 0, 0, 0.6);
+	padding: 2px 0;
+	
+}
+.newest_main_xia{
+	padding: 12px 16px 16px 16px;
+}
+
+/*无消息提示*/
+#no{
+	padding-top: 30px;
+	margin-bottom: 134px;
+}
+#no img{
+	height: 120px;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 24px;
+}
+#no p{
+	font-size: 16px;
+	line-height: 24px;
+	color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+}
+
+
+
+/*弹框样式*/
+#error_pop,#success_pop{
+	padding: 16px 24px 10px 24px;
+	background: #FFFFFF;
+	border-radius: 8px;
+	position: fixed;
+	top:50%;
+    left:0;
+    margin-top: -54px;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+	z-index: 100000;
+	width: fit-content;
+	height: fit-content;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+}
+#error_pop svg,#success_pop svg{
+	width: 24px;
+	height: 24px;
+}
+.error_pop_tit{
+	font-size: 14px;
+	line-height: 22px;
+	color: rgba(0, 0, 0, 0.8);
+	float: right;
+	line-height: 24px;
+	margin-left: 8px;
+}
+@keyframes upin{
+    0% {
+        opacity: 0;
+        transform: translateY(-100%)
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+@-webkit-keyframes upin{
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-100%)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0)
+    }
+}
+.tuichu:hover{
+	color: #C90B0B;
+}
