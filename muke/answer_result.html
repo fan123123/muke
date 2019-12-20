@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css"/>
+		<link rel="stylesheet" type="text/css" href="css/my_favorite.css"/>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/zujian.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+	    <!--导航栏-->
+    	<div id="head"></div>
+    	<style type="text/css">
+    		.answer_toptit{
+    			font-weight: 600;
+				font-size: 24px;
+				text-align: center;
+				line-height: 32px;
+				color: rgba(0, 0, 0, 0.8);
+				padding-top: 32px;
+    		}
+    		.answer_time{
+    			font-size: 14px;
+				line-height: 22px;
+				color: rgba(0, 0, 0, 0.8);
+				padding-top: 16px;
+				text-align: center;
+    		}
+    		.answer_times{
+				text-align: center;
+				font-weight: 600;	
+				font-size: 20px;
+				line-height: 24px;
+				color: #FF8A35;
+				padding-top: 8px;
+    		}
+    		.answer_timehint{
+    			margin: 0 auto;
+				width: 466px;
+				padding-top: 16px;
+    		}
+    		.answer_timehint_le{
+    			margin-right: 40px;
+    		}
+    		.answer_timehint_le,.answer_timehint_ri{
+    			float: left;
+    		}
+    		.fl{
+    			float: left;
+    		}
+    		.ri{
+    			float: right;
+    		}
+    		#answer{
+				width: 80%;
+				background: #FFFFFF;
+				padding: 0 24px 32px 24px;
+				margin: 0 auto;		
+				margin-bottom: 114px;		
+			}
+			.answer_sub{
+				background: #DE2121;
+				border-radius: 4px;
+				width: 320px;
+				height: 48px;
+				font-size: 16px;
+				line-height: 48px;
+				color: #FFFFFF;
+				margin: 0 auto;
+				text-align: center;
+				cursor: pointer;
+			}
+	        @media (min-width: 576px) {
+		  	    #answer{
+		  		    max-width: 370px; 
+		  	    }
+	  	    }
+			@media (min-width: 768px) {
+		 	   	#answer{
+		 	    	max-width: 470px;
+	 	    	} 
+	 	    }
+			@media (min-width: 992px) {
+		   		#answer{
+		   			max-width: 672px;
+	   			}
+	        }
+		  	@media (min-width: 1200px) {
+		    	#answer{
+		    		max-width: 672px;
+	    		}
+		    }
+			#answer .answer_p{
+				font-weight: 600;
+				font-size: 18px;
+				line-height: 26px;
+				color: rgba(0, 0, 0, 0.8);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding-bottom: 8px;
+			}
+			#answer .answer_main{
+				margin-top: 32px;
+			}
+			#answer .answer_inner{
+				font-size: 16px;
+				line-height: 26px;
+				color: #000000;
+			}
+			#answer .answer_answer{
+				margin-bottom: 24px;
+			}
+			#answer .answer_answer li{
+				padding: 13px 24px;
+				margin-top: 16px;
+				cursor: pointer;
+				background: rgba(0, 0, 0, 0.05);
+				border-radius: 4px;
+			}
+    	</style>
+    	<div class="answer">
+    		<div class="answer_toptit">--</div>
+    		<div class="answer_time">考试倒计时</div>
+    		<div class="answer_times">
+    			已结束
+    		</div>
+    		<div class="answer_timehint clear">
+    			<div class="answer_timehint_le">
+    				<div class="fl" style="margin-right: 4px;">开始答题时间：</div>
+    				<div class="ri kaishi_time">--</div>
+    			</div>
+    			<div class="answer_timehint_ri">
+    				<div class="fl" style="margin-right: 4px;">结束答题时间：</div>
+    				<div class="ri jieshu_time">--</div>
+    			</div>
+    		</div>
+    		<div id="answer">
+    			
+    		</div>
+    		
+    		
+    	</div>
+		<!--底部-->
+    	<div id="bases"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	$("#head").load("head.html");
+	$("#bases").load("base.html");
+	//获取数据
+	let id =location.search;
+    let newid = ''
+    for(let i = 1; i<=id.length-1;i++){
+     	newid+=id[i]
+    }
+    console.log(localStorage.lastname)
+    function questions(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/testDetails",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,
+		 		test_id:newid
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			$(".answer_toptit").html(res.data.title)
+		 			$(".kaishi_time").html(res.data.time_start)
+		 			$(".jieshu_time").html(res.data.time_end)
+		 			console.log(res)
+		 			for(let i=0;i<res.data.questions.length;i++){
+						let a =`
+							<div class="answer_main" data-id='`+i+`'>
+								<div class="answer_inner">
+									`+res.data.questions[i].question_title+`
+								</div>
+								<ul class="answer_answer dinaji`+i+`">`;
+					    let b = '';
+				    		for(let j=0;j<res.data.questions[i].option.length;j++){
+				    			b+=`<li data-id='`+res.data.questions[i].option[j].id+`'>`+res.data.questions[i].option[j].choice_text+`</li>`;
+					    	}
+					    	a+=b
+					    	let c = `
+						    		</ul>
+						    	</div>
+					    	`
+					    	a+=c;
+						$("#answer").append(a);
+					}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+    questions();
+    function questionss(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/testDetails",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,
+		 		test_id:newid
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			for(let i=0;i<=res.data.questions.length;i++){
+		 				for(let j=0;j<=$("#answer dinaji"+i+" li").length;j++){
+				  			console.log($("#answer dinaji"+i+" li"))
+					  	}
+		 			}
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+    questionss();
+    
+	$.ajax({
+	 	type:'POST',
+	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
+	 	dataType:"json",
+	 	async:true,
+	 	traditional:true,
+	 	data:{},
+	 	success:function(res){
+	 		if(res.code==200){
+	 			$('title').html(res.data.title+' | 我的答题')
+	 		}
+	 	},
+	 	complete:function(res){
+	 		
+	 	},
+	 	error:function(res){
+
+	 	}
+	})
+</script>

@@ -120,30 +120,125 @@
 			}
     	</style>
     	<div class="answer">
-    		<div class="answer_toptit">2019年第一季度考试</div>
+    		<div class="answer_toptit">--</div>
     		<div class="answer_time">考试倒计时</div>
-    		<div class="answer_times">120:60:60</div>
+    		<div class="answer_times">
+    			<span id="_d">--</span>  
+		        <span id="_h">--</span>  
+		        <span id="_m">--</span>  
+		        <span id="_s">--</span>  
+    		</div>
     		<div class="answer_timehint clear">
     			<div class="answer_timehint_le">
     				<div class="fl" style="margin-right: 4px;">开始答题时间：</div>
-    				<div class="ri">2019-03-15 19:00</div>
+    				<div class="ri kaishi_time">--</div>
     			</div>
     			<div class="answer_timehint_ri">
     				<div class="fl" style="margin-right: 4px;">结束答题时间：</div>
-    				<div class="ri">2019-03-15 19:00</div>
+    				<div class="ri jieshu_time">--</div>
     			</div>
     		</div>
     		<div id="answer">
     			
     		</div>
+    		
+    		
     	</div>
 		<!--底部-->
     	<div id="bases"></div>
 	</body>
 </html>
 <script type="text/javascript">
-	 $("#head").load("head.html");
-	 $("#bases").load("base.html");
+	$("#head").load("head.html");
+	$("#bases").load("base.html");
+	//获取数据
+	let id =location.search;
+    let newid = ''
+    for(let i = 1; i<=id.length-1;i++){
+     	newid+=id[i]
+    }
+    let ttime = ''
+    function questions(){
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/questions",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,
+		 		test_id:newid
+		 	},
+		 	success:function(res){
+		 		if(res.code==200){
+		 			$(".answer_toptit").html(res.data.title)
+		 			$(".kaishi_time").html(res.data.time_start)
+		 			$(".jieshu_time").html(res.data.time_end)
+		 			console.log(res)
+		 			ttime = res.data.time_end
+		 		}else if(res.code == -1){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-20){
+		 			window.location.href='login.html';
+		 		}else if(res.code==-30){
+		 			window.location.href='xinxiwanshan.html';
+		 		}
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
+	}
+    function countTime() {  
+    	if(ttime != ''){
+    		//获取当前时间 
+	        var date = new Date(); 
+	        var now = date.getTime();  
+	        //设置截止时间 
+	        var str= ''+ttime;
+	        var endDate = new Date(str); 
+	        var end = endDate.getTime();  
+	        //时间差  
+	        var leftTime = end-now; 
+	        //定义变量 d,h,m,s保存倒计时的时间  
+	        var d,h,m,s;  
+	        if (leftTime>=0) {  
+	            d = Math.floor(leftTime/1000/60/60/24);  
+	            h = Math.floor(leftTime/1000/60/60%24);  
+	            m = Math.floor(leftTime/1000/60%60);  
+	            s = Math.floor(leftTime/1000%60);                     
+	        }  
+	        //将倒计时赋值到div中  
+	        if(d<10){
+	        	document.getElementById("_d").innerHTML = "0"+d+":";  
+	        }else{
+	        	document.getElementById("_d").innerHTML = d+":";  
+	        }
+	        if(h<10){
+	        	document.getElementById("_h").innerHTML = "0"+h+":"; 
+	        }else{
+	        	document.getElementById("_h").innerHTML = h+":";  
+	        }
+	        if(m<10){
+	        	document.getElementById("_m").innerHTML = "0"+m+":"; 
+	        }else{
+	        	document.getElementById("_m").innerHTML = m+":"; 
+	        }
+	        if(s<10){
+	        	document.getElementById("_s").innerHTML = "0"+s+"";  
+	        }else{
+	        	document.getElementById("_s").innerHTML = s+"";  
+	        }
+	        //递归每秒调用countTime方法，显示动态时间效果  
+	        setTimeout(countTime,1000);
+    	}
+    	 setTimeout(countTime,1000);
+    } 
+    countTime()
+	questions()
 	 $.ajax({
 	 	type:'POST',
 	 	url:"https://api.htlocalservice.com/muke/public/api/Index/system",
@@ -228,7 +323,33 @@
 			arr.push(arr1)
 		}
 		console.log(arr)
-		
+		$.ajax({
+		 	type:'POST',
+		 	url:"https://api.htlocalservice.com/muke/public/api/My/testTotals",
+		 	dataType:"json",
+		 	async:true,
+		 	traditional:true,
+		 	data:{
+		 		token:localStorage.lastname,
+		 		test_id:2,
+		 		data:JSON.stringify([
+		 			{'question':'3','answer':'122'},
+		 			{'question':'4','answer':'107,106'}
+	 			])
+		 	},
+		 	success:function(res){
+//		 		if(res.code==200){
+//		 			$('title').html(res.data.title+' | 我的答题')
+//		 		}
+				console.log(res)
+		 	},
+		 	complete:function(res){
+		 		
+		 	},
+		 	error:function(res){
+	
+		 	}
+		 })
 	})
    
    $('.answer_cancel').click(function(){
@@ -314,36 +435,5 @@
 ////		})
 // 		
 // })
-
-
-	function countTime() {  
-        //获取当前时间  
-        var date = new Date();  
-        var now = date.getTime();  
-        console.log(now,123)
-        //设置截止时间  
-        var str="2019/12/18 17:12:20";
-        var endDate = new Date(str); 
-        var end = endDate.getTime();  
-        
-        //时间差  
-        var leftTime = end-now; 
-        //定义变量 d,h,m,s保存倒计时的时间  
-        var d,h,m,s;  
-        if (leftTime>=0) {  
-            d = Math.floor(leftTime/1000/60/60/24);  
-            h = Math.floor(leftTime/1000/60/60%24);  
-            m = Math.floor(leftTime/1000/60%60);  
-            s = Math.floor(leftTime/1000%60);                     
-        }  
-		console.log(d,h,m,s)			  
-        //将倒计时赋值到div中  
-//      document.getElementById("_d").innerHTML = d+"天";  
-//      document.getElementById("_h").innerHTML = h+"时";  
-//      document.getElementById("_m").innerHTML = m+"分";  
-//      document.getElementById("_s").innerHTML = s+"秒";  
-        //递归每秒调用countTime方法，显示动态时间效果  
-        setTimeout(countTime,1000);  
-    }
-	countTime()
+	
 </script>
